@@ -4,7 +4,11 @@
   angular
   .module('scoobydoo')
 
-  .controller('HomeCtrl', function($scope, $ionicModal) {
+  .controller('HomeCtrl', HomeCtrl)
+
+  HomeCtrl.$inject = ['$scope', '$ionicModal'];
+
+  function HomeCtrl($scope, $ionicModal) {
     $scope.add = {};
     $scope.item = {};
     $scope.event = {};
@@ -73,5 +77,5 @@
     $scope.closeNewItem = function() {
       $scope.itemModal.hide();
     };
-  })
+  }
 })();
