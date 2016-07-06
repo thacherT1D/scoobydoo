@@ -81,17 +81,17 @@
     var db = null;
     $ionicPlatform.ready(function() {
       try {
-        db = $cordovaSQLite.openDB({name:"nextflow.db",iosDatabaseLocation: 'Library'});
+        db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
       } catch (error) {
         alert(error);
       }
     })
-    $scope.save = function(newMessage) {
+    $scope.save = function(newitem_name, newitem_description) {
 
         // execute INSERT statement with parameter
-        $cordovaSQLite.execute(db, 'INSERT INTO Messages (message) VALUES (?)', [newMessage])
+        $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
             .then(function(result) {
-                $scope.statusMessage = "Message saved successful, cheers!";
+                $scope.statusMessage = "item saved successful, cheers!";
             }, function(error) {
                 $scope.statusMessage = "Error on saving: " + error.message;
             })
@@ -100,14 +100,14 @@
 
     $scope.load = function() {
         // Execute SELECT statement to load message from database.
-        $cordovaSQLite.execute(db, 'SELECT * FROM Messages ORDER BY id DESC')
+        $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
             .then(
                 function(res) {
 
                     if (res.rows.length > 0) {
-                        $scope.newMessage = res.rows.item(0).message;
+                        $scope.newitem = res.rows.item(0).item_name;
                         $scope.statusMessage = "Message loaded successful, cheers!";
-                        console.log("SELECTED -> " + res.rows.item(0).message);
+                        console.log("SELECTED -> " + res.rows.item(0).item_id + " item Name: " + res.rows.item(0).item_name + " item Desc: " + res.rows.item(0).item_description);
                     }
                 },
                 function(error) {
@@ -115,16 +115,5 @@
                 }
             );
     }
-
-    // $scope.createNewTask = function(db) {
-    //   console.log('yes!');
-    //   db.executeSql('INSERT INTO tasks VALUES (task_name, task_description)' ['Dexcom Sensor', 'dexcom decription'], function(resultSet) {
-    //     console.log('resultSet.insertId: ' + resultSet.insertId);
-    //     console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
-    //   }, function(error) {
-    //     console.log('SELECT error: ' + error.message);
-    //   });
-    //   // console.log(db.tasks);
-    // }
   }
 })();
