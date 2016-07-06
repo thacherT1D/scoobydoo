@@ -1,5 +1,60 @@
-<ion-view view-title="Home">
+<ion-view view-title="Track Everything Else">
+  <div class="bar bar-subheader">
+    <h2 class="title"></h2>
+    <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button>
+  </div>
   <ion-content class="padding">
-Home
+    <div class="card padding" ng-repeat="item in items">
+      <h4>{{item.title}}</h4>
+      <div>Last Completed <time am-time-ago="item.date"></time></div>
+      <div>Notes: {{item.notes}}</div>
+      <button class="button button-block button-positive" ng-model="items" ng-click="doIt(item)"> Do it.</button>
+
+    <div class="button-bar button-outline">
+      <a class="button button-outline button-positive">Edit</a>
+      <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
+      <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
+    </div>
+    <div ng-show="item.showEventList">
+    <div ng-show="item.events.length" class="padding"><strong>History</strong>
+      <div ng-repeat="event in item.events">
+        <!-- {{event}} -->
+        <div>{{event | date : "M/d/yy h:mm a"}}</div>
+      </div>
+    </div>
+    <h4 class="center" ng-hide="item.events.length">No Events Yet!<h4>
+  </div>
+    </div>
+    <!-- <button class="button button-block button-stable"> + Add New Item to Track</button> -->
   </ion-content>
+
+  <script id="new-item.html" type="text/ng-template">
+    <div class="modal">
+      <!-- Modal header bar -->
+<ion-header-bar class="bar-secondary">
+  <h1 class="title">New Item</h1>
+  <button class="button button-clear button-positive" ng-click="closeNewItem()">Cancel</button>
+</ion-header-bar>
+
+<!-- Modal content area -->
+<ion-content>
+
+  <form ng-submit="createItem(item)">
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="What do you need to do?" ng-model="item.title">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Optional Description or Notes" ng-model="item.description">
+      </label>
+    </div>
+    <div class="padding">
+      <button type="submit" class="button button-block button-positive">Create Item</button>
+    </div>
+  </form>
+
+</ion-content>
+    </div>
+  </script>
+
 </ion-view>
