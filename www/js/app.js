@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var db = null;
+  var db;
 
   angular
     .module('scoobydoo', ['ionic', 'ngCordova', 'angularMoment'])
@@ -36,7 +36,7 @@
           views: {
             'tab-data': {
               templateUrl: 'templates/tab-data.html',
-              controller: 'DataCtrl as ctrl'
+              controller: 'HomeCtrl as ctrl'
             }
           }
         })
@@ -62,8 +62,40 @@
           // org.apache.cordova.statusbar required
           StatusBar.styleDefault();
         }
-        db = $cordovaSQLite.openDB({name: 'my.db', iosDatabaseLocation: 'Library'});
-        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+
+        try {
+          db = $cordovaSQLite.openDB({name:"nextflow.db",iosDatabaseLocation: 'Library'});
+        } catch (error) {
+          alert(error);
+        }
+
+        $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)');
+
+        console.log('working');
+
+        // db = $cordovaSQLite.openDB({name: 'scooby.db', iosDatabaseLocation: 'Library'});
+        // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS tasks (task_id integer primary key AUTOINCREMENT, task_name text, task_description text)");
+        //
+        // db.executeSql('INSERT INTO tasks VALUES (?)', ['Dexcom Sensor'],['dexcom decription'], function(resultSet) {
+        //   console.log(db.tasks);
+        //   console.log('resultSet.insertId: ' + resultSet.insertId);
+        //   console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+        // }, function(error) {
+        //   console.log('SELECT error: ' + error.message);
+        // });
+        //
+        // db.executeSql("SELECT LENGTH('tenletters') AS stringlength", [], function (resultSet) {
+        //   console.log('got stringlength: ' + resultSet.rows.item(0).stringlength);
+        // }, function(error) {
+        //   console.log('SELECT error: ' + error.message);
+        // });
+
       });
+
+
     }
+
+
+
+
 })();

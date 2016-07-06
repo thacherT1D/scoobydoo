@@ -1,5 +1,22 @@
 <ion-view view-title="Data">
   <ion-content class="padding">
     <h4>Export Your Data</h4>
+
+
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Message: </span>
+        <input type="text" ng-model="newMessage">
+      </label>
+    </div>
+    <div>
+      <button class="button button-block" ng-click="save(newMessage)">
+        Save
+      </button>
+      <button class="button button-block" ng-click="load()">
+        Load
+      </button>
+      <p>{{ statusMessage }}</p>
+    </div>
   </ion-content>
 </ion-view>

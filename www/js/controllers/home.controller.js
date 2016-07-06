@@ -8,7 +8,7 @@
 
   HomeCtrl.$inject = ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicPlatform', 'HomeService', 'DataService'];
 
-  function HomeCtrl($scope, $ionicModal, $ionicPlatform, $cordovaSQLite) {
+  function HomeCtrl($scope, $ionicModal, $cordovaSQLite, $ionicPlatform) {
     $scope.add = {};
     $scope.item = {};
     $scope.event = {};
@@ -77,5 +77,54 @@
     $scope.closeNewItem = function() {
       $scope.itemModal.hide();
     };
+
+    var db = null;
+    $ionicPlatform.ready(function() {
+      try {
+        db = $cordovaSQLite.openDB({name:"nextflow.db",iosDatabaseLocation: 'Library'});
+      } catch (error) {
+        alert(error);
+      }
+    })
+    $scope.save = function(newMessage) {
+
+        // execute INSERT statement with parameter
+        $cordovaSQLite.execute(db, 'INSERT INTO Messages (message) VALUES (?)', [newMessage])
+            .then(function(result) {
+                $scope.statusMessage = "Message saved successful, cheers!";
+            }, function(error) {
+                $scope.statusMessage = "Error on saving: " + error.message;
+            })
+
+    }
+
+    $scope.load = function() {
+        // Execute SELECT statement to load message from database.
+        $cordovaSQLite.execute(db, 'SELECT * FROM Messages ORDER BY id DESC')
+            .then(
+                function(res) {
+
+                    if (res.rows.length > 0) {
+                        $scope.newMessage = res.rows.item(0).message;
+                        $scope.statusMessage = "Message loaded successful, cheers!";
+                        console.log("SELECTED -> " + res.rows.item(0).message);
+                    }
+                },
+                function(error) {
+                    $scope.statusMessage = "Error on loading: " + error.message;
+                }
+            );
+    }
+
+    // $scope.createNewTask = function(db) {
+    //   console.log('yes!');
+    //   db.executeSql('INSERT INTO tasks VALUES (task_name, task_description)' ['Dexcom Sensor', 'dexcom decription'], function(resultSet) {
+    //     console.log('resultSet.insertId: ' + resultSet.insertId);
+    //     console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+    //   }, function(error) {
+    //     console.log('SELECT error: ' + error.message);
+    //   });
+    //   // console.log(db.tasks);
+    // }
   }
 })();
