@@ -3,13 +3,13 @@
 
   angular
     .module('scoobydoo')
-    .factory('HomeService', HomeService)
-
-  HomeService.$inject = []
+    .factory('HomeService', HomeService);
 
   function HomeService() {
     return {
+      getData: function() {
 
+      }
     }
-  };
+  }
 })();

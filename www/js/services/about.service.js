@@ -5,8 +5,6 @@
     .module('scoobydoo')
     .factory('AboutService', AboutService)
 
-  AboutService.$inject = []
-
   function AboutService() {
     return {
 

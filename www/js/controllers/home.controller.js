@@ -6,9 +6,9 @@
 
   .controller('HomeCtrl', HomeCtrl)
 
-  HomeCtrl.$inject = ['$scope', '$ionicModal'];
+  HomeCtrl.$inject = ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicPlatform', 'HomeService', 'DataService'];
 
-  function HomeCtrl($scope, $ionicModal) {
+  function HomeCtrl($scope, $ionicModal, $ionicPlatform, $cordovaSQLite) {
     $scope.add = {};
     $scope.item = {};
     $scope.event = {};

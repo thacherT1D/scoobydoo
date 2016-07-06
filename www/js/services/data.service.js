@@ -5,8 +5,6 @@
     .module('scoobydoo')
     .factory('DataService', DataService)
 
-  DataService.$inject = []
-
   function DataService() {
 
     return {

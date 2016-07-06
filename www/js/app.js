@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  var db = null;
 
   angular
     .module('scoobydoo', ['ionic', 'ngCordova', 'angularMoment'])
@@ -7,7 +8,7 @@
     .run(runBlock);
 
     routeHandler.$inject = ['$stateProvider', '$urlRouterProvider'];
-    runBlock.$inject = ['$ionicPlatform'];
+    runBlock.$inject = ['$ionicPlatform', '$cordovaSQLite'];
 
     function routeHandler($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/tab/home')
@@ -51,7 +52,7 @@
       })
     }
 
-    function runBlock($ionicPlatform) {
+    function runBlock($ionicPlatform, $cordovaSQLite) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -61,7 +62,8 @@
           // org.apache.cordova.statusbar required
           StatusBar.styleDefault();
         }
+        db = $cordovaSQLite.openDB({name: 'my.db', iosDatabaseLocation: 'Library'});
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
       });
     }
-
 })();
