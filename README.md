@@ -11,3 +11,8 @@ Trackee v.ScoobyDoo
     <li>- Simple Setup</li>
     <li>- Data can be exported OUT of the app for use and analysis with other applications by your or your doctor</li>
   </ul>
+
+
+
+  ####Answers I wish I had to questions I did have:
+  Ionic App opens in simulator, but not on the device -- all script tags must have "https://" in front of them not just "//"
