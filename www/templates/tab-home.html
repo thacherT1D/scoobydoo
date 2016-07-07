@@ -4,10 +4,13 @@
     <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button>
   </div>
   <ion-content class="padding">
+    <button class="card" ng-click="loadItems()">Load Items</button>
     <div class="card padding" ng-repeat="item in items">
-      <h4>{{item.title}}</h4>
-      <div>Last Completed <time am-time-ago="item.date"></time></div>
-      <div>Notes: {{item.description}}</div>
+      <h4>{{item.item_name}}</h4>
+      <div>Last Completed --
+        <!-- <time am-time-ago="item.date"></time> -->
+      </div>
+      <div>Notes: {{item.item_description}}</div>
       <button class="button button-block button-positive" ng-model="items" ng-click="doIt(item)"> Do it.</button>
 
     <div class="button-bar button-outline">
