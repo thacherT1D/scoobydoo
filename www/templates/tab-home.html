@@ -5,6 +5,7 @@
   </div>
   <ion-content class="padding has-subheader">
     <button class="card" ng-click="loadItems()">Load Items</button>
+    <button class="card" ng-click="deleteEverything()">Delete Everything</button>
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
       <div>Last Completed --
@@ -14,7 +15,7 @@
       <button class="button button-block button-positive" ng-model="items" ng-click="doIt(item)"> Do it.</button>
 
     <div class="button-bar button-outline">
-      <a class="button button-outline button-positive" ng-click="executeSql()">Edit</a>
+      <!-- <a class="button button-outline button-positive" ng-click="">Edit</a> -->
       <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
       <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
     </div>
@@ -42,13 +43,13 @@
 <!-- Modal content area -->
 <ion-content>
 
-  <form ng-submit="createItem(item)">
+  <form ng-submit="addItem(newitem_name, newitem_description)">
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="What do you need to do?" ng-model="item.title">
+        <input type="text" placeholder="What do you need to do?" ng-model="newitem_name">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Optional Description or Notes" ng-model="item.description">
+        <input type="text" placeholder="Optional Description or Notes" ng-model="newitem_description">
       </label>
     </div>
     <div class="padding">

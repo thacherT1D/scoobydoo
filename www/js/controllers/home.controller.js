@@ -28,15 +28,7 @@
     //       notes: 'Should last 3 days, can stretch an additional 8 hrs'
     //     }
     //   ];
-    // $scope.add.addItem = function() {
-    //   $scope.items.push({
-    //     title: $scope.item.title,
-    //     description: $scope.item.description,
-    //     date: 0,
-    //     events: []
-    //   });
-    //   $scope.item = {};
-    // };
+
     $scope.doIt = function(item) {
       item.events.splice(0,0,new Date);
       item.date = new Date;
@@ -48,36 +40,10 @@
         item.showEventList = true;
       }
     };
-    // $scope.deleteItem = function(item) {
-    //   $scope.items.splice($scope.items.indexOf(item),1);
-    // };
-    //Modal
-    $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
-      $scope.itemModal = modal;
-    }, {
-      scope: $scope
-    });
-    // $scope.createItem = function(item) {
-    //   if(!item) {
-    //     return;
-    //   }
-    //   $scope.items.push({
-    //     title: item.title,
-    //     description: item.description,
-    //     date: 0,
-    //     events: []
-    //   });
-    //   $scope.itemModal.hide();
-    //   item.title = "";
-    //   item.description = "";
-    // };
-    $scope.newItem = function() {
-      $scope.itemModal.show();
-    };
-    $scope.closeNewItem = function() {
-      $scope.itemModal.hide();
-    };
 
+
+
+//start of initalization for SQLite
     var db = null;
     $ionicPlatform.ready(function() {
       try {
@@ -86,13 +52,19 @@
         alert(error);
       }
     })
+    $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
+      $scope.itemModal = modal;
+    }, {
+      scope: $scope
+    });
 
+    $scope.newItem = function() {
+      $scope.itemModal.show();
+    };
+    $scope.closeNewItem = function() {
+      $scope.itemModal.hide();
+    };
 
-    // $scope.deleteItem = function(item_id) {
-    //
-    //   $cordovaSQLite.execute(db, 'DELETE * FROM Items WHERE ID = ')
-    //       .then(
-    // }
 
     $scope.loadItems = function() {
         $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
@@ -130,12 +102,12 @@
 
 
 
-
-
     $scope.addItem = function(newitem_name, newitem_description) {
       $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
-          .then(function(result) {
+          .then(function(res) {
               $scope.statusMessage = "item saved successful, cheers!";
+              $scope.newitem_name = "";
+
           }, function(error) {
               $scope.statusMessage = "Error on saving: " + error.message;
           });
@@ -153,8 +125,9 @@
                         })
                       }
 
-                        $scope.statusMessage = "Message loaded successful, cheers!";
-                        console.log("SELECTED -> " + res.rows.item(0).item_id + " item Name: " + res.rows.item(0).item_name + " item Desc: " + res.rows.item(0).item_description);
+                        // $scope.statusMessage = "Message loaded successful, cheers!";
+                        // console.log("SELECTED -> " + res.rows.item(0).item_id + " item Name: " + res.rows.item(0).item_name + " item Desc: " + res.rows.item(0).item_description);
+
                     }
 
                 },
@@ -162,6 +135,24 @@
                     $scope.statusMessage = "Error on loading: " + error.message;
                 }
             );
+      console.log('additem running');
+      $scope.itemModal.hide();
+    }
+    $scope.deleteItem = function(item) {
+      // $scope.items.splice($scope.items.indexOf(item),1);
+      console.log(item.item_id);
+      // var x = item.item_id
+      var query = "DELETE FROM Items WHERE item_id =" + item.item_id;
+      console.log(query);
+      $cordovaSQLite.execute(db, query)
+        .then(
+          function(res) {
+            console.log('yes!')
+          },
+          function(error) {
+            console.log('no!')
+          }
+        );
     }
   }
 })();

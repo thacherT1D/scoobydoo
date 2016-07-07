@@ -8,6 +8,7 @@
         <span class="input-label">Item Name: </span>
         <input type="text" ng-model="newitem_name">
       </label>
+      <div>{{newitem_name}}</div>
       <label class="item item-input">
         <span class="input-label">Item decription: </span>
         <input type="text" ng-model="newitem_description">
@@ -22,6 +23,9 @@
       </button>
       <button class="button button-block" ng-click="deleteEverything()">
         Delete Everything
+      </button>
+      <button class="button button-block" ng-click="resetVariables()">
+        Reset Variables
       </button>
       <p>{{ statusMessage }}</p>
     </div>

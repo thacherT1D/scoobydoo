@@ -56,7 +56,7 @@
         views: {
           'tab-sqliteTest': {
             templateUrl: 'templates/tab-sqliteTest.html',
-            controller: 'HomeCtrl as ctrl'
+            controller: ''
           }
         }
       })
