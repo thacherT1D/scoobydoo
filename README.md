@@ -34,3 +34,6 @@ Trackee v.ScoobyDoo
   //       notes: 'Should last 3 days, can stretch an additional 8 hrs'
   //     }
   //   ];
+
+  // $scope.statusMessage = "Message loaded successful, cheers!";
+  // console.log("SELECTED -> " + res.rows.item(0).item_id + " item Name: " + res.rows.item(0).item_name + " item Desc: " + res.rows.item(0).item_description);

@@ -6,6 +6,7 @@
   <ion-content class="padding has-subheader">
     <button class="card" ng-click="loadItems()">Load Items</button>
     <button class="card" ng-click="deleteEverything()">Delete Everything</button>
+    <button class="card" ng-click="addEvent(1)">getItems</button>
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
       <div>Last Completed --

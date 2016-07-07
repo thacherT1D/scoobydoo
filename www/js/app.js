@@ -81,10 +81,7 @@
 
         $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Items (item_id INTEGER PRIMARY KEY AUTOINCREMENT, item_name TEXT, item_description TEXT)');
 
-        $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Events (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_timeStamp TIMESTAMP, task_id)');
-
-        console.log('working');
-
+        $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Events (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_timeStamp TIMESTAMP, item_id)');
       });
     }
   })();

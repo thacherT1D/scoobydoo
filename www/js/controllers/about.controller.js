@@ -5,9 +5,10 @@
     .module('scoobydoo')
       .controller('AboutCtrl', AboutCtrl)
 
-  function AboutCtrl() {
+  AboutCtrl.$inject = ['$scope'];
+
+  function AboutCtrl($scope) {
     var vm = this;
 
-    // $timeout(function() {}, 1000);
   }
 })();

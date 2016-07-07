@@ -4,6 +4,7 @@
   angular
     .module('scoobydoo')
     .factory('DataService', DataService)
+    DataService.$inject = [];
 
   function DataService() {
 
