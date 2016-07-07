@@ -8,5 +8,6 @@
   function AboutCtrl() {
     var vm = this;
 
+    // $timeout(function() {}, 1000);
   }
 })();

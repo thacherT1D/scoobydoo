@@ -62,7 +62,7 @@
       })
     }
 
-    function runBlock($ionicPlatform, $cordovaSQLite) {
+    function runBlock($ionicPlatform, $cordovaSQLite, $timeout) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -85,12 +85,9 @@
 
         console.log('working');
 
+        // $timeout(function() {
+        //   $state.go('tab.home');
+        // }, 1000);
       });
-
-
     }
-
-
-
-
-})();
+  })();

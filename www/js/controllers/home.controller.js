@@ -8,7 +8,7 @@
 
   HomeCtrl.$inject = ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicPlatform', 'HomeService', 'DataService'];
 
-  function HomeCtrl($scope, $ionicModal, $cordovaSQLite, $ionicPlatform) {
+  function HomeCtrl($scope, $ionicModal, $cordovaSQLite, $ionicPlatform, $timeout) {
     $scope.add = {};
     $scope.item = {};
     $scope.event = {};
