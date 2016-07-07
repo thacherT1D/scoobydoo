@@ -85,9 +85,6 @@
 
         console.log('working');
 
-        // $timeout(function() {
-        //   $state.go('tab.home');
-        // }, 1000);
       });
     }
   })();
