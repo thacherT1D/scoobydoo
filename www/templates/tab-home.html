@@ -3,7 +3,7 @@
     <h2 class="title"></h2>
     <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button>
   </div>
-  <ion-content class="padding">
+  <ion-content class="padding has-subheader">
     <button class="card" ng-click="loadItems()">Load Items</button>
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>

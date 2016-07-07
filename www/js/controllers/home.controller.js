@@ -48,29 +48,29 @@
         item.showEventList = true;
       }
     };
-    $scope.deleteItem = function(item) {
-      $scope.items.splice($scope.items.indexOf(item),1);
-    };
+    // $scope.deleteItem = function(item) {
+    //   $scope.items.splice($scope.items.indexOf(item),1);
+    // };
     //Modal
     $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
       $scope.itemModal = modal;
     }, {
       scope: $scope
     });
-    $scope.createItem = function(item) {
-      if(!item) {
-        return;
-      }
-      $scope.items.push({
-        title: item.title,
-        description: item.description,
-        date: 0,
-        events: []
-      });
-      $scope.itemModal.hide();
-      item.title = "";
-      item.description = "";
-    };
+    // $scope.createItem = function(item) {
+    //   if(!item) {
+    //     return;
+    //   }
+    //   $scope.items.push({
+    //     title: item.title,
+    //     description: item.description,
+    //     date: 0,
+    //     events: []
+    //   });
+    //   $scope.itemModal.hide();
+    //   item.title = "";
+    //   item.description = "";
+    // };
     $scope.newItem = function() {
       $scope.itemModal.show();
     };
@@ -88,7 +88,11 @@
     })
 
 
-
+    // $scope.deleteItem = function(item_id) {
+    //
+    //   $cordovaSQLite.execute(db, 'DELETE * FROM Items WHERE ID = ')
+    //       .then(
+    // }
 
     $scope.loadItems = function() {
         $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
@@ -103,6 +107,8 @@
                           item_description: res.rows.item(i).item_description
                         })
                       }
+                    } else {
+                      return;
                     }
                 },
                 function(error) {
@@ -110,6 +116,21 @@
                 }
             );
     }
+
+    $scope.deleteEverything = function() {
+      $cordovaSQLite.execute(db, 'DELETE FROM Items')
+        .then(
+          function(res) {
+            console.log('you deleted everything?!');
+          },
+          function(error) {
+              console.log('What is your problem??? oh yeah, this is your problem  ' + error.message);
+          });
+    }
+
+
+
+
 
     $scope.addItem = function(newitem_name, newitem_description) {
       $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
