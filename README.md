@@ -16,3 +16,4 @@ Trackee v.ScoobyDoo
 
   ####Answers I wish I had to questions I did have:
   Ionic App opens in simulator, but not on the device -- all script tags must have "https://" in front of them not just "//"
+``
