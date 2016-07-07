@@ -36,7 +36,7 @@
           views: {
             'tab-data': {
               templateUrl: 'templates/tab-data.html',
-              controller: 'HomeCtrl as ctrl'
+              controller: 'DataCtrl as ctrl'
             }
           }
         })
