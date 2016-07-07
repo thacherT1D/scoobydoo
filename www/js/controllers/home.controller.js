@@ -12,24 +12,8 @@
     $scope.add = {};
     $scope.item = {};
     $scope.event = {};
-    // $scope.items = [
-    //     {
-    //       title: 'Change Dexcom Sensor',
-    //       description: 'Should last 7+ days',
-    //       date: "2016-05-06T22:27:48.035Z",
-    //       events: ["2016-05-16T22:27:48.035Z", "2016-05-06T22:27:48.035Z"],
-    //       notes: 'Should last 7+ days'
-    //     },
-    //     {
-    //       title: 'Change OmniPod Pod',
-    //       description: 'Should last 3 days, can stretch an additional 8 hrs',
-    //       date: "2016-05-06T22:27:48.035Z",
-    //       events: [],
-    //       notes: 'Should last 3 days, can stretch an additional 8 hrs'
-    //     }
-    //   ];
 
-    $scope.doIt = function(item) {
+    $scope.addEvent = function(item) {
       item.events.splice(0,0,new Date);
       item.date = new Date;
     };
@@ -40,8 +24,6 @@
         item.showEventList = true;
       }
     };
-
-
 
 //start of initalization for SQLite
     var db = null;

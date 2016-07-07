@@ -16,4 +16,21 @@ Trackee v.ScoobyDoo
 
   ####Answers I wish I had to questions I did have:
   Ionic App opens in simulator, but not on the device -- all script tags must have "https://" in front of them not just "//"
-``
+
+
+  // $scope.items = [
+  //     {
+  //       title: 'Change Dexcom Sensor',
+  //       description: 'Should last 7+ days',
+  //       date: "2016-05-06T22:27:48.035Z",
+  //       events: ["2016-05-16T22:27:48.035Z", "2016-05-06T22:27:48.035Z"],
+  //       notes: 'Should last 7+ days'
+  //     },
+  //     {
+  //       title: 'Change OmniPod Pod',
+  //       description: 'Should last 3 days, can stretch an additional 8 hrs',
+  //       date: "2016-05-06T22:27:48.035Z",
+  //       events: [],
+  //       notes: 'Should last 3 days, can stretch an additional 8 hrs'
+  //     }
+  //   ];
