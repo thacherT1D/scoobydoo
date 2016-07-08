@@ -13,7 +13,10 @@
     $scope.item = {};
     $scope.event = {};
 
-
+    $scope.tableReset = function() {
+      $cordovaSQLite.execute(db, 'DROP TABLE Events');
+      console.log('done');
+    }
     $scope.toggleHistory = function(item) {
       if(item.showEventList == true) {
         item.showEventList = false;
@@ -160,36 +163,33 @@
       $scope.addEvent = function(item_id) {
         $cordovaSQLite.execute(db, 'INSERT INTO Events (item_id) VALUES (?)', [item_id])
         .then(function(res) {
-          console.log('save');
-
         }, function(error) {
-          console.log('error ' + error.message );
         });
 
-        // $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_timeStamp DESC')
-        // .then(
-        //   function(res) {
-        //     if (res.rows.length > 0) {
-        //       $scope.events = [];
-        //       for(var i=0;i<res.rows.length -1; i++) {
-        //         $scope.events.push({
-        //           event_id: res.rows.event(i).event_id,
-        //           event_timeStamp: res.rows.event(i).event_timeStamp,
-        //           item_id: res.rows.event(i).item_id
-        //         })
-        //       }
-        //
-        //       $scope.statusMessage = "Message loaded successful, cheers!";
-        //       console.log("SELECTED -> " + res.rows.events(0).event_id + " Time Stamp: " + res.rows.events(0).event_timeStamp + " item_id: " + res.rows.events(0).item_id);
-        //
-        //     }
-        //
-        //   },
-        //   function(error) {
-        //     $scope.statusMessage = "Error on loading: " + error.message;
-        //   }
-        // );
-        // console.log('additem running');
+        $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_timeStamp DESC')
+        .then(
+          function(res) {
+            // if (res.rows.length > 0) {
+            //   $scope.events = [];
+            //   for(var i=0;i<res.rows.length -1; i++) {
+            //     $scope.events.push({
+            //       event_id: res.rows.event(i).event_id,
+            //       event_timeStamp: res.rows.event(i).event_timeStamp,
+            //       item_id: res.rows.event(i).item_id
+            //     })
+            //   }
+            //
+              //
+              // console.log("SELECTED -> " + res.rows.events(0).event_id + " Time Stamp: " + res.rows.events(0).event_timeStamp + " item_id: " + res.rows.events(0).item_id);
+              //
+            // }
+
+            console.log('add event running');
+          },
+          function(error) {
+            $scope.statusMessage = "Error on loading: " + error.message;
+          }
+        );
 
       }
     }
