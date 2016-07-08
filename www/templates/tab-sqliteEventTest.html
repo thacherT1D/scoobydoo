@@ -1,0 +1,54 @@
+<ion-view view-title="sqliteEventTest">
+  <ion-content class="padding">
+    <h4>sqliteTest</h4>
+
+    <form ng-submit="addEvent(newevent_name)">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="What do you need to do?" ng-model="newevent_name">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">Submit</button>
+      </div>
+    </form>
+
+
+
+
+
+<!--
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Event Name: </span>
+        <input type="text" ng-model="newevent_name">
+      </label>
+      <div>{{newevemt_name}}</div>
+    </div>
+
+    <div>
+      <button class="button button-block" ng-click="loadItems()">
+        LoadItems()
+      </button>
+      <button class="button button-block" ng-click="addItem(newitem_name, newitem_description)">
+        Add and Display - addItem()
+      </button>
+      <button class="button button-block" ng-click="deleteEverything()">
+        Delete Everything
+      </button>
+      <button class="button button-block" ng-click="resetVariables()">
+        Reset Variables
+      </button>
+      <p>{{ statusMessage }}</p>
+    </div>
+
+    <div ng-repeat="item in items">
+      <h4>Name: {{item.item_name}}</h4>
+      <p>Description: {{item.item_description}}</p>
+      <p>ID: {{item.item_id}}</p>
+    </div> -->
+
+
+
+  </ion-content>
+</ion-view>

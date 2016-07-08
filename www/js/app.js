@@ -60,9 +60,19 @@
           }
         }
       })
+
+      .state('tab.sqliteEventTest', {
+        url: '/sqliteEventTest',
+        views: {
+          'tab-sqliteEventTest': {
+            templateUrl: 'templates/tab-sqliteEventTest.html',
+            controller: ''
+          }
+        }
+      })
     }
 
-    function runBlock($ionicPlatform, $cordovaSQLite, $timeout) {
+    function runBlock($ionicPlatform, $cordovaSQLite) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
