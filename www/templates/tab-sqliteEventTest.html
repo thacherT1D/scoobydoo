@@ -2,17 +2,20 @@
   <ion-content class="padding">
     <h4>sqliteTest</h4>
 
-    <form ng-submit="addEvent(newevent_name)">
-      <div class="list">
-        <label class="item item-input">
-          <input type="text" placeholder="What do you need to do?" ng-model="newevent_name">
-        </label>
-      </div>
-      <div class="padding">
-        <button type="submit" class="button button-block button-positive">Submit</button>
-      </div>
-    </form>
+    <label class="item item-input">
+      <span class="input-label">Event Name: </span>
+      <input type="text" ng-model="textInput">
+    </label>
+    <div>{{textInput}}</div>
 
+    <button class="button button-block" ng-click="addEvent(textInput)">
+      Add and Display - addEvent()
+    </button>
+
+    <div ng-repeat="item in events">
+      <p>A thing</p>
+      <p>Text Input: {{item.textInput}}</p>
+    </div>
 
 
 

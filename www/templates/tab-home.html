@@ -7,19 +7,19 @@
     <!-- <button class="card" ng-click="loadItems()">Load Items</button> -->
     <button class="card" ng-click="deleteEverything()">Delete Everything</button>
     <!-- <button class="card" ng-click="tableReset()">Table Reset</button> -->
-    <button class="card" ng-click="addEvent(1)">Add Event</button>
+    <!-- <button class="card" ng-click="addEvent(1)">Add Event</button>
     <div ng-repeat="event in events">
       <p>{{event.event_id}}</p>
       <p>{{event.event_timeStamp}}</p>
       <p>{{event.item_id}}</p>
-    </div>
+    </div> -->
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
       <div>Last Completed --
         <!-- <time am-time-ago="item.date"></time> -->
       </div>
       <div>Notes: {{item.item_description}}</div>
-      <button class="button button-block button-positive" ng-model="items" ng-click="addEvent(1)"> Do it.</button>
+      <button class="button button-block button-positive" ng-model="items" ng-click=""> Do it.</button>
 
     <div class="button-bar button-outline">
       <!-- <a class="button button-outline button-positive" ng-click="">Edit</a> -->

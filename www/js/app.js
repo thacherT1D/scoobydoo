@@ -66,7 +66,7 @@
         views: {
           'tab-sqliteEventTest': {
             templateUrl: 'templates/tab-sqliteEventTest.html',
-            controller: ''
+            controller: 'HomeCtrl as ctrl'
           }
         }
       })
@@ -92,6 +92,10 @@
         $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Items (item_id INTEGER PRIMARY KEY AUTOINCREMENT, item_name TEXT, item_description TEXT)');
 
         $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Events (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_timeStamp DATETIME, item_id)');
+
+        $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Test (test_id INTEGER PRIMARY KEY AUTOINCREMENT, test_timeStamp DATETIME, item_id)');
+
+        $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS TestTest (item_id INTEGER PRIMARY KEY AUTOINCREMENT, textInput TEXT)');
       });
     }
   })();

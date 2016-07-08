@@ -160,35 +160,36 @@
         );
       }
 
-      $scope.addEvent = function(item_id) {
-        $cordovaSQLite.execute(db, 'INSERT INTO Events (item_id) VALUES (?)', [item_id])
+      $scope.addEvent = function(textInput) {
+        $cordovaSQLite.execute(db, 'INSERT INTO TestTest (textInput) VALUES (?)', [textInput])
         .then(function(res) {
         }, function(error) {
+          console.log('error ' + error.message );
         });
 
-        $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_timeStamp DESC')
+        $cordovaSQLite.execute(db, 'SELECT * FROM TestTest')
         .then(
           function(res) {
-            // if (res.rows.length > 0) {
-            //   $scope.events = [];
-            //   for(var i=0;i<res.rows.length -1; i++) {
-            //     $scope.events.push({
-            //       event_id: res.rows.event(i).event_id,
-            //       event_timeStamp: res.rows.event(i).event_timeStamp,
-            //       item_id: res.rows.event(i).item_id
-            //     })
-            //   }
-            //
-              //
-              // console.log("SELECTED -> " + res.rows.events(0).event_id + " Time Stamp: " + res.rows.events(0).event_timeStamp + " item_id: " + res.rows.events(0).item_id);
-              //
-            // }
+            if (res.rows.length > 0) {
+              $scope.testTest = [];
+              for(var i=0;i<res.rows.length -1; i++) {
+                console.log('this is how many rows there are');
 
-            console.log('add event running');
+                // console.log(res.rows.item(i));
+
+                $scope.testTest.push({
+                  textInput: res.rows.item(i).textInput
+                  // console.log(res.rows.item(i).textInput);
+                })
+              }
+            } else {
+              return;
+            }
           },
           function(error) {
-            $scope.statusMessage = "Error on loading: " + error.message;
+            console.log('error ' + error.message );
           }
+          // console.log('pushed into select array')
         );
 
       }
