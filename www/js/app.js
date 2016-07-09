@@ -81,9 +81,12 @@
 
         $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Items (item_id INTEGER PRIMARY KEY AUTOINCREMENT, item_name TEXT, item_description TEXT)');
 
-        $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Events (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_timeStamp DATETIME, event_note TEXT)');
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Events (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_timeStamp DATETIME, event_note TEXT)");
 
-        // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS TestTest');
+        // ALTER TABLE recipes ADD COLUMN timestamp DATE DEFAULT (datetime('now','localtime'));
+
+
+        // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS Events');
 
       });
     }
