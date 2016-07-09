@@ -5,9 +5,9 @@
   </div>
   <ion-content class="padding has-subheader">
     <!-- <button class="card" ng-click="loadItems()">Load Items</button> -->
-    <button class="card" ng-click="deleteEverything()">Delete Everything</button>
-    <!-- <button class="card" ng-click="tableReset()">Table Reset</button> -->
-    <button class="card" ng-click="addEvent(1)">Add Event</button>
+    <button class="card" ng-click="loadItems()">loadItems</button>
+    <button class="card" ng-click="addEvent('event name')">addEvent</button>
+
     <div ng-repeat="event in events">
       <p>{{event.event_id}}</p>
       <p>{{event.event_timeStamp}}</p>

@@ -37,3 +37,53 @@ Trackee v.ScoobyDoo
 
   // $scope.statusMessage = "Message loaded successful, cheers!";
   // console.log("SELECTED -> " + res.rows.item(0).item_id + " item Name: " + res.rows.item(0).item_name + " item Desc: " + res.rows.item(0).item_description);
+
+  #### Put into home.controller.js in the ```$ionicPlatform.ready(function() {``` section
+  $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table'")
+    .then(
+      function(res) {
+        console.log('success!');
+        if(res.rows.length > 0) {
+          $scope.sqlTables = [];
+          for (var i = 0; i < res.rows.length; i++) {
+            if (res.rows.item(i).tbl_name) {
+              $scope.sqlTables.push(res.rows.item(i).tbl_name);
+              console.log(res.rows.item(i).tbl_name);
+            } else {
+              return;
+            }
+          }
+        } else {
+          return;
+        }
+      },
+      function(error) {
+        console.log('error ' + error.message );
+      }
+    );
+
+    ###Load Items function from home.controller.js
+    $scope.loadItems = function() {
+      $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
+      .then(
+        function(res) {
+          if (res.rows.length > 0) {
+            $scope.items = [];
+            for(var i=0;i<res.rows.length -1; i++) {
+              $scope.items.push({
+                item_id: res.rows.item(i).item_id,
+                item_name: res.rows.item(i).item_name,
+                item_description: res.rows.item(i).item_description
+              })
+            }
+          } else {
+            return;
+          }
+        },
+        function(error) {
+          console.log('error ' + error.message );
+        }
+      );
+    }
+
+    
