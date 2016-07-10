@@ -19,7 +19,7 @@
         <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
       </div>
 
-      <div class="padding">
+      <div ng-show="item.showEventList">
         <strong>History</strong>
         <div ng-repeat="event in events">
           <div>{{event.event_timeStamp}}</div>

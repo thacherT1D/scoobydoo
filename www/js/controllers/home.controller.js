@@ -11,7 +11,8 @@
 
   function HomeCtrl($scope, $ionicModal, $cordovaSQLite, $ionicPlatform) {
     $scope.item = {};
-    $scope.events = [];
+    $scope.items = [];
+
 
     // Attempts at Services
     // $scope.printAThing = function() {
@@ -143,6 +144,7 @@
           );
       }
 
+
       $scope.addItem = function(newitem_name, newitem_description) {
         $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
         .then(function(res) {
@@ -155,7 +157,7 @@
         .then(
           function(res) {
             if (res.rows.length > 0) {
-              $scope.items = [];
+              // $scope.items = [];
               for(var i=0;i<res.rows.length -1; i++) {
                 $scope.items.push({
                   item_id: res.rows.item(i).item_id,
