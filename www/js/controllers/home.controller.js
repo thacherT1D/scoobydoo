@@ -126,40 +126,15 @@
         });
       }
 
-      $scope.addEvent = function(newEvent_note) {
-        $cordovaSQLite.execute(db, 'INSERT INTO Events (event_note) VALUES (?)', [newEvent_note])
-        .then(function(res) {
-          console.log(events(events.length -1).event_id);
-          // res.rows.item(res.rows.length -1).event_timeStamp = new Date;
-          // console.log('timestamp = ' + res.rows.item(res.rows.length -1).event_timeStamp);
-
-        }, function(error) {
-          console.log('error ' + error.message );
-        });
-
-
-        // $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_id DESC')
-        // .then(
-        //   function(res) {
-        //     // res.rows.item(res.rows.length - 1).event_timeStamp = new Date();
-        //     if (res.rows.length > 0) {
-        //       // $scope.events = [];
-        //
-        //       for(var i=0;i<res.rows.length; i++) {
-        //         $scope.events.push({
-        //           event_id: res.rows.item(i).event_id,
-        //           event_timeStamp: res.rows.item(i).event_timeStamp,
-        //           event_note: res.rows.item(i).event_note
-        //         })
-        //         console.log('timestamp = ' + res.rows.item(i).event_timeStamp);
-        //
-        //       }
-        //     }
-        //   },
-        //   function(error) {
-        //     console.log('error ' + error.message );
-        //   }
-        // );
+      $scope.addEvent = function() {
+        console.log('added Event');
+        // var addEventQuery = "INSERT FROM WHERE event_id =" + event.event_id;
+        // $cordovaSQLite.execute(db, addEventQuery)
+        // .then(function(res) {
+        //   console.log('added Event')
+        // }, function(error) {
+        //   console.log('error ' + error.message );
+        // });
       }
 
       $scope.addItem = function(newitem_name, newitem_description) {

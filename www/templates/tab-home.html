@@ -4,29 +4,6 @@
     <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button>
   </div>
   <ion-content class="padding has-subheader">
-    <!-- <button class="card" ng-click="loadItems()">Load Items</button> -->
-    <!-- <button class="card" ng-click="loadItems()">loadItems</button> -->
-
-    <form ng-submit="addEvent(newEvent_note)">
-      <div class="list">
-        <label class="item item-input">
-          <input type="text" placeholder="Event Note?" ng-model="newEvent_note">
-        </label>
-      </div>
-      <div class="padding">
-        <button type="submit" class="button button-block button-dark">Add Event</button>
-      </div>
-      {{newEvent_note}}
-    </form>
-
-    <div class="card padding" ng-repeat="event in events">
-      <p>Things</p>
-      <p>{{event.event_id}}</p>
-      <p>{{event.event_timeStamp}}</p>
-      <p>{{event.event_note}}</p>
-
-    <button class="button button-outline button-dark" ng-click="deleteEvent(event)">Delete</button>
-    </div>
 
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
@@ -34,7 +11,7 @@
         <time am-time-ago="item.date"></time>
       </div>
       <div>Notes: {{item.item_description}}</div>
-      <button class="button button-block button-positive" ng-model="items" ng-click=""> Do it.</button>
+      <button class="button button-block button-positive" ng-click="addEvent()"> Do it.</button>
 
       <div class="button-bar button-outline">
         <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
