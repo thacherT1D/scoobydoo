@@ -85,7 +85,7 @@
 
 //Drop Tables as needed
         // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS Items');
-        // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS ITEM_5');
+        // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS ITEM_');
 
 
 //Seed Data

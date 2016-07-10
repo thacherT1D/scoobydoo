@@ -12,6 +12,7 @@
   function HomeCtrl($scope, $ionicModal, $cordovaSQLite, $ionicPlatform) {
     $scope.item = {};
     $scope.items = [];
+    var lastCompletedForDisplay;
 
 
     // Attempts at Services
@@ -119,10 +120,11 @@
           + item.item_id
           + ", DateTime('now'))"
         );
-        console.log(addNewEventInstanceQuery);
+        // console.log(addNewEventInstanceQuery);
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
 
-        // var currentEvent = 'event_' + item.item_id;
+        item.lastCompletedForDisplay = new Date();
+        console.log(lastCompletedForDisplay);
 
       }
 
@@ -131,18 +133,18 @@
           .then(
             function(res) {
               var currentEvent = 'event_' + item.item_id;
-console.log(item);
+// console.log(item);
               if(res.rows.length > 0) {
                 item.currentEvent = [];
-                console.log(item.currentEvent);
+                // console.log(item.currentEvent);
                 for(var i=0;i<res.rows.length-1; i++) {
                   item.currentEvent.push({
                     event_id: res.rows.item(i).event_id,
                     item_id: res.rows.item(i).item_id,
                     event_timeStamp: res.rows.item(i).event_timeStamp
                   })
-                  console.log(res.rows.item(i).event_id);
-                  console.log(res.rows.item(i).item_id);
+                  // console.log(res.rows.item(i).event_id);
+                  // console.log(res.rows.item(i).item_id);
                   console.log(res.rows.item(i).event_timeStamp);
                 }
               }

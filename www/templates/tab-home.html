@@ -8,10 +8,13 @@
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
       <div>Last Completed:
+        <div>
+          <!-- {{item.lastCompletedForDisplay | date }} -->
+          <time am-time-ago="item.lastCompletedForDisplay"></time>
+        </div>
         <!-- <div>{{item.currentEvent[0].event_timeStamp | moment: 'format': 'MMM DD, YYYY'}}</div> -->
-        <div>{{item.currentEvent[0].event_timeStamp}}</div>
+        <!-- <div>{{item.currentEvent[0].event_timeStamp}}</div> -->
 
-        <!-- <time am-time-ago="item.currentEvent[0]"></time> -->
       </div>
       <div>Notes: {{item.item_description}}</div>
       <!-- <div>Item Id: {{item.item_id}}</div> -->
