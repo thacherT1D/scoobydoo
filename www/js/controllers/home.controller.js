@@ -124,7 +124,7 @@
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
 
         item.lastCompletedForDisplay = new Date();
-        console.log(lastCompletedForDisplay);
+        console.log(item.lastCompletedForDisplay);
 
       }
 
