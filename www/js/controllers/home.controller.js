@@ -101,7 +101,7 @@
           .then(
             function(res) {
               if(res.rows.length > 0) {
-                var currentEvent = 'event' + item.item_id
+                var currentEvent = 'event' + item.item_id;
                 $scope.currentEvent = [];
                 for(var i=0;i<res.rows.length-1; i++) {
                   $scope.currentEvent.push({

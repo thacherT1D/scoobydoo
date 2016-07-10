@@ -17,12 +17,18 @@
         <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
         <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
       </div>
-<div class="">{{currentEvent}}</div>
+      <div>{{item.item_id}}</div>
+      <div>{{currentEvent}}</div>
+
+
+
       <div ng-show="item.showEventList">
         <div ng-show="item.events.length" class="padding"><strong>History</strong>
           <div ng-repeat="event in currentEvent">
-            <!-- <div>{{event | date : "M/d/yy h:mm a"}}</div> -->
-            <div>{{event.event_id}}</div>
+            <div class="">{{event.event_id}}</div>
+            <div class="">{{event.item_id}}</div>
+            <div class="">{{event.event_timeStamp}}</div>
+            <div>{{event | date : "M/d/yy h:mm a"}}</div>
           </div>
         </div>
         <h4 class="center" ng-hide="item.events.length">No Events Yet!<h4>
