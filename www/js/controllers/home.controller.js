@@ -122,39 +122,12 @@
         console.log(addNewEventInstanceQuery);
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
 
-        var currentEvent = 'event_' + item.item_id;
+        // var currentEvent = 'event_' + item.item_id;
 
-        //
-        // $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
-        //   .then(
-        //     function(res) {
-        //       var currentEvent = 'event_' + item.item_id;
-        //
-        //       if(res.rows.length > 0) {
-        //         $scope.currentEvent = [];
-        //         console.log($scope.currentEvent);
-        //         for(var i=0;i<res.rows.length-1; i++) {
-        //           $scope.currentEvent.push({
-        //             event_id: res.rows.item(i).event_id,
-        //             item_id: res.rows.item(i).item_id,
-        //             event_timeStamp: res.rows.item(i).event_timeStamp
-        //           })
-        //           // console.log(res.rows.item(i).event_id);
-        //           // console.log(res.rows.item(i).item_id);
-        //           console.log(res.rows.item(i).event_timeStamp);
-        //         }
-        //       }
-        //     }, function (error) {
-        //       console.log('error ' + error.message);
-        //     }
-        //   );
       }
 
-
       $scope.showHistory = function(item) {
-
         $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
-
           .then(
             function(res) {
               var currentEvent = 'event_' + item.item_id;
@@ -178,31 +151,6 @@ console.log(item);
             }
           );
       }
-      // $scope.showHistory = function(item) {
-      //   console.log(item.item_id);
-      //   console.log('history triggered select statement');
-      //   $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
-      //     .then(
-      //       function(res) {
-      //         if(res.rows.length > 0) {
-      //           var currentEvent = 'event_' + item.item_id;
-      //           $scope.currentEvent = [];
-      //           for(var i=0;i<res.rows.length-1; i++) {
-      //             $scope.currentEvent.push({
-      //               event_id: res.rows.item(i).event_id,
-      //               item_id: res.rows.item(i).item_id,
-      //               event_timeStamp: res.rows.item(i).event_timeStamp
-      //             })
-      //             // console.log(res.rows.item(i).event_id);
-      //             // console.log(res.rows.item(i).item_id);
-      //             console.log(res.rows.item(i).event_timeStamp);
-      //           }
-      //         }
-      //       }, function (error) {
-      //         console.log('error ' + error.message);
-      //       }
-      //     );
-      // }
 
 
       $scope.addItem = function(newitem_name, newitem_description) {

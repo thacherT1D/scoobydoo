@@ -8,37 +8,25 @@
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
       <div>Last Completed:
+        <!-- <div>{{item.currentEvent[0].event_timeStamp | moment: 'format': 'MMM DD, YYYY'}}</div> -->
         <div>{{item.currentEvent[0].event_timeStamp}}</div>
 
         <!-- <time am-time-ago="item.currentEvent[0]"></time> -->
       </div>
       <div>Notes: {{item.item_description}}</div>
-      <div>Item Id: {{item.item_id}}</div>
+      <!-- <div>Item Id: {{item.item_id}}</div> -->
       <button class="button button-block button-positive" ng-click="addEvent(item)"> Do it.</button>
       <button class="button button-block button-dark" ng-click="showHistory(item)"> Get History</button>
       <div>Show history Here</div>
 
       <div ng-repeat="event in item.currentEvent">
           <div>{{event.event_timeStamp}}</div>
-          <!-- <div>{{event.event_id}}</div> -->
       </div>
 
       <div class="button-bar button-outline">
         <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
         <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
       </div>
-
-      <!-- <div ng-click="showHistory(item)">
-        <div ng-show="item.showEventList">
-          <strong>History</strong>
-          <div ng-repeat="event in currentEvent">
-            <div>{{event.event_timeStamp}}</div>
-
-
-          </div>
-        </div>
-      </div> -->
-
     </div>
   </ion-content>
 
