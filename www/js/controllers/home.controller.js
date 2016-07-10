@@ -84,47 +84,27 @@
       }
 
       $scope.addEvent = function(item) {
-        // console.log('added Event');
-        // console.log(item.item_id);
-        // console.log(item_id);
-
         // create event table for each new item
         var newEventTablePerItemQuery = "CREATE TABLE IF NOT EXISTS ITEM_" + item.item_id + "(event_id INTEGER PRIMARY KEY AUTOINCREMENT, item_id INTEGER, event_timeStamp DATETIME)";
-        // console.log(newEventTablePerItemQuery);
         $cordovaSQLite.execute(db, newEventTablePerItemQuery)
-        // .then(
-        //   function(res) {
-        //     // console.log(item.item_id);
-        //   },
-        //   function(error) {
-        //     console.log('error ' + error.message);
-        //   }
-        // );
-        var addNewEventInstanceQuery = (
-          "INSERT INTO ITEM_"
+
+        var addNewEventInstanceQuery = ("INSERT INTO ITEM_"
           + item.item_id
           + " (item_id, event_timeStamp) VALUES ("
           + item.item_id
           + ", DateTime('now'))"
         );
-        console.log(addNewEventInstanceQuery);
 
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
-        .then(
-          function(res) {
-            console.log('made it!');
-            console.log();
-          }, function(error) {
-            console.log('error ' + error.message);
-          }
-        );
+
         $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
           .then(
             function(res) {
               if(res.rows.length > 0) {
-                $scope.events = [];
+                var currentEvent = 'event' + item.item_id
+                $scope.currentEvent = [];
                 for(var i=0;i<res.rows.length-1; i++) {
-                  $scope.events.push({
+                  $scope.currentEvent.push({
                     event_id: res.rows.item(i).event_id,
                     item_id: res.rows.item(i).item_id,
                     event_timeStamp: res.rows.item(i).event_timeStamp
@@ -132,8 +112,6 @@
                   console.log(res.rows.item(i).event_id);
                   console.log(res.rows.item(i).item_id);
                   console.log(res.rows.item(i).event_timeStamp);
-
-
                 }
               }
             }, function (error) {
