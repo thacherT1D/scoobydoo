@@ -22,18 +22,18 @@
 
       <div class="button-bar button-outline">
         <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
+
         <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
       </div>
 
-      <!-- <div ng-show="item.showCommentList">
+      <div ng-show="item.showEventList">
+        <button class="button button-block button-dark" ng-click="showHistory(item)"> Get History</button>
 
-      <button class="button button-block button-dark" ng-click="showHistory(item)"> Get History</button>
-
-      <div>Show history Here</div>
-      <div ng-repeat="event in item.currentEvent">
-        <div>{{event.event_timeStamp}}</div>
-      </div>
-    </div> -->
+        <div>Show history Here</div>
+        <div ng-repeat="event in item.currentEvent">
+          <div>{{event.event_timeStamp}}</div>
+        </div>
+    </div>
 
     </div>
   </ion-content>

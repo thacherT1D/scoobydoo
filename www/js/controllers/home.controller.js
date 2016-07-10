@@ -126,14 +126,10 @@
         item.lastCompletedForDisplay = new Date();
         console.log(item.lastCompletedForDisplay);
 
-      }
-
-      $scope.showHistory = function(item) {
         $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
           .then(
             function(res) {
               var currentEvent = 'event_' + item.item_id;
-// console.log(item);
               if(res.rows.length > 0) {
                 item.currentEvent = [];
                 // console.log(item.currentEvent);
@@ -143,16 +139,36 @@
                     item_id: res.rows.item(i).item_id,
                     event_timeStamp: res.rows.item(i).event_timeStamp
                   })
-                  // console.log(res.rows.item(i).event_id);
-                  // console.log(res.rows.item(i).item_id);
-                  console.log(res.rows.item(i).event_timeStamp);
                 }
               }
             }, function (error) {
               console.log('error ' + error.message);
             }
           );
+
       }
+
+      // $scope.showHistory = function(item) {
+      //   $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
+      //     .then(
+      //       function(res) {
+      //         var currentEvent = 'event_' + item.item_id;
+      //         if(res.rows.length > 0) {
+      //           item.currentEvent = [];
+      //           // console.log(item.currentEvent);
+      //           for(var i=0;i<res.rows.length-1; i++) {
+      //             item.currentEvent.push({
+      //               event_id: res.rows.item(i).event_id,
+      //               item_id: res.rows.item(i).item_id,
+      //               event_timeStamp: res.rows.item(i).event_timeStamp
+      //             })
+      //           }
+      //         }
+      //       }, function (error) {
+      //         console.log('error ' + error.message);
+      //       }
+      //     );
+      // }
 
 
       $scope.addItem = function(newitem_name, newitem_description) {
