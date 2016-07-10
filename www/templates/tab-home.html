@@ -1,7 +1,7 @@
 <ion-view view-title="Track Everything Else">
-  <div class="bar bar-subheader">
-    <h2 class="title"></h2>
-    <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button>
+  <div class="bar bar-subheader padding">
+    <button class="button button-clear button-block button-positive" ng-click="newItem()">+ Add New Item</button>
+    <!-- <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button> -->
   </div>
   <ion-content class="padding has-subheader">
 
@@ -11,7 +11,7 @@
         <time am-time-ago="item.date"></time>
       </div>
       <div>Notes: {{item.item_description}}</div>
-      <button class="button button-block button-positive" ng-click="addEvent()"> Do it.</button>
+      <button class="button button-block button-positive" ng-click="addEvent(item)"> Do it.</button>
 
       <div class="button-bar button-outline">
         <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>

@@ -85,5 +85,30 @@ Trackee v.ScoobyDoo
         }
       );
     }
+    ###Delete Events Table function for when there is a single events table
+    $scope.deleteEvent = function(event) {
+      var event_query = "DELETE FROM Events WHERE event_id =" + event.event_id;
+      console.log(event_query);
+      $cordovaSQLite.execute(db, event_query);
 
-    
+      $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_id DESC')
+      .then(
+        function(res) {
+          if (res.rows.length > 0) {
+            $scope.events = [];
+            for(var i=0;i<res.rows.length -1; i++) {
+              $scope.events.push({
+                event_id: res.rows.item(i).event_id,
+                event_timeStamp: res.rows.item(i).event_timeStamp,
+                event_note: res.rows.item(i).event_note
+              })
+            }
+          } else {
+            return;
+          }
+        },
+        function(error) {
+          console.log('error ' + error.message );
+        }
+      );
+    }

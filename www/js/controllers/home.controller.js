@@ -48,26 +48,6 @@
       } catch (error) {
         alert(error);
       }
-      $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_id DESC')
-      .then(
-        function(res) {
-          if (res.rows.length > 0) {
-            $scope.events = [];
-            for(var i=0;i<res.rows.length -1; i++) {
-              $scope.events.push({
-                event_id: res.rows.item(i).event_id,
-                event_timeStamp: res.rows.item(i).event_timeStamp,
-                event_note: res.rows.item(i).event_note
-              })
-            }
-          } else {
-            return;
-          }
-        },
-        function(error) {
-          console.log('error ' + error.message );
-        }
-      );
     })
 
     $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
@@ -78,11 +58,11 @@
 
     $scope.newItem = function() {
       $scope.itemModal.show();
-    };
+    }
 
     $scope.closeNewItem = function() {
       $scope.itemModal.hide();
-    };
+    }
 
     $scope.toggleHistory = function(item) {
       if(item.showEventList == true) {
@@ -90,30 +70,7 @@
       } else {
         item.showEventList = true;
       }
-    };
-
-    // $scope.loadItems = function() {
-    //   $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
-    //   .then(
-    //     function(res) {
-    //       if (res.rows.length > 0) {
-    //         $scope.items = [];
-    //         for(var i=0;i<res.rows.length -1; i++) {
-    //           $scope.items.push({
-    //             item_id: res.rows.item(i).item_id,
-    //             item_name: res.rows.item(i).item_name,
-    //             item_description: res.rows.item(i).item_description
-    //           })
-    //         }
-    //       } else {
-    //         return;
-    //       }
-    //     },
-    //     function(error) {
-    //       console.log('error ' + error.message );
-    //     }
-    //   );
-    // }
+    }
 
     $scope.deleteEverything = function() {
       $cordovaSQLite.execute(db, 'DELETE FROM Items')
@@ -126,15 +83,63 @@
         });
       }
 
-      $scope.addEvent = function() {
-        console.log('added Event');
-        // var addEventQuery = "INSERT FROM WHERE event_id =" + event.event_id;
-        // $cordovaSQLite.execute(db, addEventQuery)
-        // .then(function(res) {
-        //   console.log('added Event')
-        // }, function(error) {
-        //   console.log('error ' + error.message );
-        // });
+      $scope.addEvent = function(item) {
+        // console.log('added Event');
+        // console.log(item.item_id);
+        // console.log(item_id);
+
+        // create event table for each new item
+        var newEventTablePerItemQuery = "CREATE TABLE IF NOT EXISTS ITEM_" + item.item_id + "(event_id INTEGER PRIMARY KEY AUTOINCREMENT, item_id INTEGER, event_timeStamp DATETIME)";
+        // console.log(newEventTablePerItemQuery);
+        $cordovaSQLite.execute(db, newEventTablePerItemQuery)
+        // .then(
+        //   function(res) {
+        //     // console.log(item.item_id);
+        //   },
+        //   function(error) {
+        //     console.log('error ' + error.message);
+        //   }
+        // );
+        var addNewEventInstanceQuery = (
+          "INSERT INTO ITEM_"
+          + item.item_id
+          + " (item_id, event_timeStamp) VALUES ("
+          + item.item_id
+          + ", DateTime('now'))"
+        );
+        console.log(addNewEventInstanceQuery);
+
+        $cordovaSQLite.execute(db, addNewEventInstanceQuery)
+        .then(
+          function(res) {
+            console.log('made it!');
+            console.log();
+          }, function(error) {
+            console.log('error ' + error.message);
+          }
+        );
+        $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
+          .then(
+            function(res) {
+              if(res.rows.length > 0) {
+                $scope.events = [];
+                for(var i=0;i<res.rows.length-1; i++) {
+                  $scope.events.push({
+                    event_id: res.rows.item(i).event_id,
+                    item_id: res.rows.item(i).item_id,
+                    event_timeStamp: res.rows.item(i).event_timeStamp
+                  })
+                  console.log(res.rows.item(i).event_id);
+                  console.log(res.rows.item(i).item_id);
+                  console.log(res.rows.item(i).event_timeStamp);
+
+
+                }
+              }
+            }, function (error) {
+              console.log('error ' + error.message);
+            }
+          );
       }
 
       $scope.addItem = function(newitem_name, newitem_description) {
@@ -142,7 +147,7 @@
         .then(function(res) {
           console.log('saved');
         }, function(error) {
-          console.log('error ' + error.message );
+          console.log('error ' + error.message);
         });
 
         $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
@@ -160,11 +165,12 @@
             }
           },
           function(error) {
-            console.log('error ' + error.message );
+            console.log('error ' + error.message);
           }
         );
         $scope.itemModal.hide();
       }
+
       $scope.deleteItem = function(item) {
         var query = "DELETE FROM Items WHERE item_id =" + item.item_id;
         $cordovaSQLite.execute(db, query);
@@ -186,39 +192,9 @@
             }
           },
           function(error) {
-            console.log('error ' + error.message );
+            console.log('error ' + error.message);
           }
         );
       }
-
-
-      $scope.deleteEvent = function(event) {
-        var event_query = "DELETE FROM Events WHERE event_id =" + event.event_id;
-        console.log(event_query);
-        $cordovaSQLite.execute(db, event_query);
-
-        $cordovaSQLite.execute(db, 'SELECT * FROM Events ORDER BY event_id DESC')
-        .then(
-          function(res) {
-            if (res.rows.length > 0) {
-              $scope.events = [];
-              for(var i=0;i<res.rows.length -1; i++) {
-                $scope.events.push({
-                  event_id: res.rows.item(i).event_id,
-                  event_timeStamp: res.rows.item(i).event_timeStamp,
-                  event_note: res.rows.item(i).event_note
-                })
-              }
-            } else {
-              return;
-            }
-          },
-          function(error) {
-            console.log('error ' + error.message );
-          }
-        );
-      }
-
     }
-
   })();
