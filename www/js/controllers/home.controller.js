@@ -41,6 +41,7 @@
                   item_name: res.rows.item(i).item_name,
                   item_description: res.rows.item(i).item_description
                 })
+                console.log(res.rows.item(i).item_name);
               }
             }
           })
@@ -48,6 +49,29 @@
       } catch (error) {
         alert(error);
       }
+//Uncomment to console.log/SHOW ALL TABLES IN db
+      // $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table'")
+      //   .then(
+      //     function(res) {
+      //       console.log('success!');
+      //       if(res.rows.length > 0) {
+      //         $scope.sqlTables = [];
+      //         for (var i = 0; i < res.rows.length; i++) {
+      //           if (res.rows.item(i).tbl_name) {
+      //             $scope.sqlTables.push(res.rows.item(i).tbl_name);
+      //             console.log(res.rows.item(i).tbl_name);
+      //           } else {
+      //             return;
+      //           }
+      //         }
+      //       } else {
+      //         return;
+      //       }
+      //     },
+      //     function(error) {
+      //       console.log('error ' + error.message );
+      //     }
+      //   );
     })
 
     $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
@@ -94,17 +118,16 @@
           + item.item_id
           + ", DateTime('now'))"
         );
-
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
 
         $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
           .then(
             function(res) {
               if(res.rows.length > 0) {
-                var currentEvent = 'event' + item.item_id;
-                $scope.currentEvent = [];
+                // var currentEvent = 'event' + item.item_id;
+                $scope.events = [];
                 for(var i=0;i<res.rows.length-1; i++) {
-                  $scope.currentEvent.push({
+                  $scope.events.push({
                     event_id: res.rows.item(i).event_id,
                     item_id: res.rows.item(i).item_id,
                     event_timeStamp: res.rows.item(i).event_timeStamp

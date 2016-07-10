@@ -3,39 +3,31 @@
     <button class="button button-clear button-block button-dark" ng-click="newItem()">+ Add New Item</button>
     <!-- <button class="button button-icon icon ion-ios-plus-empty" ng-click="newItem()"></button> -->
   </div>
-  <ion-content class="padding has-subheader">
 
+  <ion-content class="padding has-subheader">
     <div class="card padding" ng-repeat="item in items">
       <h4>{{item.item_name}}</h4>
-      <div>Last Completed:
+      <div>Last Completed
         <time am-time-ago="item.date"></time>
       </div>
       <div>Notes: {{item.item_description}}</div>
+      <div>Item Id: {{item.item_id}}</div>
       <button class="button button-block button-positive" ng-click="addEvent(item)"> Do it.</button>
 
       <div class="button-bar button-outline">
         <a class="button button-outline button-positive" ng-click="toggleHistory(item)">History</a>
         <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
       </div>
-      <div>{{item.item_id}}</div>
-      <div>{{currentEvent}}</div>
 
-
-
-      <div ng-show="item.showEventList">
-        <div ng-show="item.events.length" class="padding"><strong>History</strong>
-          <div ng-repeat="event in currentEvent">
-            <div class="">{{event.event_id}}</div>
-            <div class="">{{event.item_id}}</div>
-            <div class="">{{event.event_timeStamp}}</div>
-            <div>{{event | date : "M/d/yy h:mm a"}}</div>
-          </div>
-        </div>
-        <h4 class="center" ng-hide="item.events.length">No Events Yet!<h4>
+      <div class="padding">
+        <strong>History</strong>
+        <div ng-repeat="event in events">
+          <div>{{event.event_timeStamp}}</div>
         </div>
       </div>
 
-    </ion-content>
+    </div>
+  </ion-content>
 
     <script id="new-item.html" type="text/ng-template">
       <div class="modal">
