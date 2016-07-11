@@ -42,8 +42,8 @@
         var email = {
            to: '',
            attachments: [
-             // Exported trackEE file
-           ],
+             '../../img/fileAttachmentImage.png'
+            ],
            subject: 'Your trackEE Data',
            body: 'Find your trackEE data attached.',
            isHtml: true
