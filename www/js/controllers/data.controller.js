@@ -42,14 +42,7 @@
          console.log('email button pressed')
         var email = {
            to: 'teste@example.com',
-           cc: 'teste@example.com',
-           bcc: ['john@doe.com', 'jane@doe.com'],
-           attachments: [
-             'file://img/logo.png',
-             'res://icon.png',
-             'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-             'file://README.pdf'
-           ],
+           attachments: [],
            subject: 'Mail subject',
            body: 'How are you? Nice greetings from Leipzig',
            isHtml: true
