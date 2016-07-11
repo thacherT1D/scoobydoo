@@ -133,7 +133,7 @@
               if(res.rows.length > 0) {
                 item.currentEvent = [];
                 // console.log(item.currentEvent);
-                for(var i=0;i<res.rows.length-1; i++) {
+                for(var i=0;i<res.rows.length; i++) {
                   item.currentEvent.push({
                     event_id: res.rows.item(i).event_id,
                     item_id: res.rows.item(i).item_id,
@@ -146,9 +146,6 @@
             }
           );
       }
-
-
-
 
       $scope.addItem = function(newitem_name, newitem_description) {
         $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])

@@ -27,11 +27,11 @@
       </div>
 
       <div class="padding" ng-show="item.showEventList">
-        <!-- <button class="button button-block button-dark" ng-click="showHistory(item)"> Get History</button> -->
-
-        <!-- <div>Show history Here</div> -->
         <div ng-repeat="event in item.currentEvent">
           <div>{{event.event_timeStamp}}</div>
+        </div>
+        <div ng-hide="item.currentEvent.length">
+          No Events Yet!
         </div>
     </div>
 

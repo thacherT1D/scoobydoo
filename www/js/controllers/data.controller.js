@@ -62,7 +62,29 @@
     })
         // $timeout(function() {}, 1000);
         $scope.createDataDump = function() {
-          $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND tbl_name not like 'sqlite_%'")
+          // $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND tbl_name not like 'sqlite_%'")
+          // .then(
+          //   function(res) {
+          //     console.log('success!');
+          //     if(res.rows.length > 0) {
+          //       $scope.sqlTables = [];
+          //       for (var i = 0; i < res.rows.length; i++) {
+          //         if (res.rows.item(i).tbl_name) {
+          //           $scope.sqlTables.push(res.rows.item(i).tbl_name);
+          //           console.log(res.rows.item(i).tbl_name);
+          //         } else {
+          //           return;
+          //         }
+          //       }
+          //     } else {
+          //       return;
+          //     }
+          //   },
+          //   function(error) {
+          //     console.log('error ' + error.message );
+          //   }
+          // );
+          $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE tbl_name = 'Items'")
           .then(
             function(res) {
               console.log('success!');
@@ -84,6 +106,11 @@
               console.log('error ' + error.message );
             }
           );
+          var TS;
+          $cordovaSQLite.execute(db, TS="SELECT tbl_name FROM sqlite_master WHERE tbl_name = 'Items'")
+
+
+
         }
   }
 
