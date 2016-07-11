@@ -136,3 +136,15 @@ Trackee v.ScoobyDoo
   //       }
   //     );
   // }
+
+  ### Delete Everything from Items table function
+  $scope.deleteEverything = function() {
+    $cordovaSQLite.execute(db, 'DELETE FROM Items')
+    .then(
+      function(res) {
+        console.log('you deleted everything?!');
+      },
+      function(error) {
+        console.log('What is your problem??? oh yeah, this is your problem  ' + error.message);
+      });
+    }

@@ -43,7 +43,7 @@
                   item_name: res.rows.item(i).item_name,
                   item_description: res.rows.item(i).item_description
                 })
-                console.log(res.rows.item(i).item_name);
+                // console.log(res.rows.item(i).item_name);
               }
             }
           })
@@ -97,18 +97,6 @@
         item.showEventList = true;
       }
     }
-
-    $scope.deleteEverything = function() {
-      $cordovaSQLite.execute(db, 'DELETE FROM Items')
-      .then(
-        function(res) {
-          console.log('you deleted everything?!');
-        },
-        function(error) {
-          console.log('What is your problem??? oh yeah, this is your problem  ' + error.message);
-        });
-      }
-
       $scope.addEvent = function(item) {
         // create event table for each new item
         var newEventTablePerItemQuery = "CREATE TABLE IF NOT EXISTS ITEM_" + item.item_id + "(event_id INTEGER PRIMARY KEY AUTOINCREMENT, item_id INTEGER, event_timeStamp DATETIME)";
@@ -124,7 +112,7 @@
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
 
         item.lastCompletedForDisplay = new Date();
-        console.log(item.lastCompletedForDisplay);
+        // console.log(item.lastCompletedForDisplay);
 
         $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
           .then(
@@ -150,7 +138,7 @@
       $scope.addItem = function(newitem_name, newitem_description) {
         $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
         .then(function(res) {
-          console.log('saved');
+          // console.log('saved');
         }, function(error) {
           console.log('error ' + error.message);
         });
