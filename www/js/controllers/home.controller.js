@@ -11,7 +11,7 @@
 
   function HomeCtrl($scope, $ionicModal, $cordovaSQLite, $ionicPlatform) {
     $scope.item = {};
-    $scope.items = [];
+    // $scope.items = [];
     var lastCompletedForDisplay;
 
 
@@ -159,7 +159,7 @@
         .then(
           function(res) {
             if (res.rows.length > 0) {
-              // $scope.items = [];
+              $scope.items = [];
               for(var i=0;i<res.rows.length -1; i++) {
                 $scope.items.push({
                   item_id: res.rows.item(i).item_id,
