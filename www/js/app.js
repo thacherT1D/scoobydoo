@@ -84,9 +84,8 @@
         // ALTER TABLE recipes ADD COLUMN timestamp DATE DEFAULT (datetime('now','localtime'));
 
 //Drop Tables as needed
-        // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS Items');
-        // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS ITEM_6');
-
+      // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS Items');
+      // $cordovaSQLite.execute(db, 'DROP TABLE IF EXISTS ITEM_');
 
 //Seed Data
         // $cordovaSQLite.execute(db, "INSERT INTO Items(item_name, item_description) VALUES ('Change Dexcom Sensor', 'should last 7-10 days')");

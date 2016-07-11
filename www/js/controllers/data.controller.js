@@ -39,12 +39,13 @@
       //    alert("not available");
       //  });
        $scope.sendEmail = function(){
-         console.log('email button pressed')
         var email = {
-           to: 'teste@example.com',
-           attachments: [],
-           subject: 'Mail subject',
-           body: 'How are you? Nice greetings from Leipzig',
+           to: '',
+           attachments: [
+             // Exported trackEE file
+           ],
+           subject: 'Your trackEE Data',
+           body: 'Find your trackEE data attached.',
            isHtml: true
         };
 

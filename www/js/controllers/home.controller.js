@@ -37,7 +37,7 @@
           function(res) {
             if (res.rows.length > 0) {
               $scope.items = [];
-              for(var i=0;i<res.rows.length -1; i++) {
+              for(var i=0;i<res.rows.length; i++) {
                 $scope.items.push({
                   item_id: res.rows.item(i).item_id,
                   item_name: res.rows.item(i).item_name,
@@ -52,28 +52,28 @@
         alert(error);
       }
 //Uncomment to console.log/SHOW ALL TABLES IN db
-      // $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table'")
-      //   .then(
-      //     function(res) {
-      //       console.log('success!');
-      //       if(res.rows.length > 0) {
-      //         $scope.sqlTables = [];
-      //         for (var i = 0; i < res.rows.length; i++) {
-      //           if (res.rows.item(i).tbl_name) {
-      //             $scope.sqlTables.push(res.rows.item(i).tbl_name);
-      //             console.log(res.rows.item(i).tbl_name);
-      //           } else {
-      //             return;
-      //           }
-      //         }
-      //       } else {
-      //         return;
-      //       }
-      //     },
-      //     function(error) {
-      //       console.log('error ' + error.message );
-      //     }
-      //   );
+      $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table'")
+        .then(
+          function(res) {
+            console.log('success!');
+            if(res.rows.length > 0) {
+              $scope.sqlTables = [];
+              for (var i = 0; i < res.rows.length; i++) {
+                if (res.rows.item(i).tbl_name) {
+                  $scope.sqlTables.push(res.rows.item(i).tbl_name);
+                  console.log(res.rows.item(i).tbl_name);
+                } else {
+                  return;
+                }
+              }
+            } else {
+              return;
+            }
+          },
+          function(error) {
+            console.log('error ' + error.message );
+          }
+        );
     })
 
     $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
