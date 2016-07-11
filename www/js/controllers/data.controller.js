@@ -41,9 +41,7 @@
        $scope.sendEmail = function(){
         var email = {
            to: '',
-           attachments: [
-             '../../img/fileAttachmentImage.png'
-            ],
+           attachments: [],
            subject: 'Your trackEE Data',
            body: 'Find your trackEE data attached.',
            isHtml: true
