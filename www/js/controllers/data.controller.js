@@ -2,12 +2,12 @@
   'use strict';
   var db;
   angular
-    .module('scoobydoo')
-      .controller('DataCtrl', DataCtrl)
+  .module('scoobydoo')
+  .controller('DataCtrl', DataCtrl)
 
-  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite']
+  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite', '$cordovaFile']
 
-  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite) {
+  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite, $cordovaFile) {
     $ionicPlatform.ready(function() {
       try {
         db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
@@ -28,82 +28,84 @@
             }
           })
 
-      } catch (error) {
-        alert(error);
-      }
-      // $cordovaEmailComposer.isAvailable().then(function() {
-      //    // is available
-      //    alert("available");
-      //  }, function () {
-      //    // not available
-      //    alert("not available");
-      //  });
-       $scope.sendEmail = function(){
-        var email = {
-           to: '',
-           attachments: [],
-           subject: 'Your trackEE Data',
-           body: 'Find your trackEE data attached.',
-           isHtml: true
-        };
+        } catch (error) {
+          alert(error);
+        }
+        // $cordovaEmailComposer.isAvailable().then(function() {
+        //    // is available
+        //    alert("available");
+        //  }, function () {
+        //    // not available
+        //    alert("not available");
+        //  });
 
-       $cordovaEmailComposer.open(email).then(null, function () {
-         // user cancelled email
-        });
-       }
-    })
-        // $timeout(function() {}, 1000);
-        $scope.createDataDump = function() {
-          // $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table' AND tbl_name not like 'sqlite_%'")
-          // .then(
-          //   function(res) {
-          //     console.log('success!');
-          //     if(res.rows.length > 0) {
-          //       $scope.sqlTables = [];
-          //       for (var i = 0; i < res.rows.length; i++) {
-          //         if (res.rows.item(i).tbl_name) {
-          //           $scope.sqlTables.push(res.rows.item(i).tbl_name);
-          //           console.log(res.rows.item(i).tbl_name);
-          //         } else {
-          //           return;
-          //         }
-          //       }
-          //     } else {
-          //       return;
-          //     }
-          //   },
-          //   function(error) {
-          //     console.log('error ' + error.message );
-          //   }
-          // );
-          $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE tbl_name = 'Items'")
-          .then(
-            function(res) {
-              console.log('success!');
-              if(res.rows.length > 0) {
-                $scope.sqlTables = [];
-                for (var i = 0; i < res.rows.length; i++) {
-                  if (res.rows.item(i).tbl_name) {
-                    $scope.sqlTables.push(res.rows.item(i).tbl_name);
-                    console.log(res.rows.item(i).tbl_name);
-                  } else {
-                    return;
-                  }
-                }
-              } else {
-                return;
-              }
-            },
-            function(error) {
-              console.log('error ' + error.message );
-            }
-          );
-          var TS;
-          $cordovaSQLite.execute(db, TS="SELECT tbl_name FROM sqlite_master WHERE tbl_name = 'Items'")
 
+
+
+
+
+        $scope.sendEmail = function(){
+          var email = {
+            to: '',
+            attachments: [],
+            subject: 'Your trackEE Data',
+            body: 'Find your trackEE data attached.',
+            isHtml: true
+          };
+
+          $cordovaEmailComposer.open(email).then(null, function () {
+            // user cancelled email
+          });
+        }
+        $scope.getFreeDiskSpace = function() {
+
+          // $cordovaFile.removeDir(cordova.file.documentsDirectory, 'TestDir1')
+          // //(path, directory)
+          // .then(function (success) {
+          //   // success
+          //   console.log('directory removed');
+          // }, function (error) {
+          //   console.log('error ' + error.message);
+          // });
+
+          // console.log('cordova.file.documentsDirectory: ' + cordova.file.documentsDirectory);
+
+          // $cordovaFile.createDir(cordova.file.documentsDirectory, 'TestDir1', false)
+          // //(path, directory)
+          // .then(function (success) {
+          //   // success
+          //   console.log('TestDir1 Created');
+          // }, function (error) {
+          //   console.log('error ' + error.message);
+          // });
+          var  testdirvar = 'TestDir1'
+          var filePath = cordova.file.documentsDirectory + testdirvar;
+          console.log(filePath);
+
+          $cordovaFile.checkDir(filePath, "")
+            .then(function (success) {
+              // success
+              console.log("Found Dir1");
+            }, function (error) {
+              // error
+              console.log('Error');
+            });
+
+
+          // $cordovaFile.createFile(cordova.file.documentsDirectory, 'TestDir1', false)
+          // //(path, directory)
+          // .then(function (success) {
+          //   // success
+          //   console.log('TestDir1 Created');
+          // }, function (error) {
+          //   console.log('error ' + error.message);
+          // });
 
 
         }
-  }
+      })
 
-})();
+
+    }
+
+  })();
