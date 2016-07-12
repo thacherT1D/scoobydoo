@@ -5,9 +5,9 @@
   .module('scoobydoo')
   .controller('DataCtrl', DataCtrl)
 
-  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite', '$cordovaFile']
+  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite', '$cordovaFile', '$sqliteToJson']
 
-  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite, $cordovaFile) {
+  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite, $cordovaFile, $sqliteToJson) {
     $ionicPlatform.ready(function() {
       try {
         db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
@@ -83,23 +83,43 @@
           console.log(filePath);
 
           $cordovaFile.checkDir(filePath, "")
-            .then(function (success) {
-              // success
-              console.log("Found Dir1");
-            }, function (error) {
-              // error
-              console.log('Error');
-            });
+          .then(function (success) {
+            // success
+            console.log("Found Dir1");
+          }, function (error) {
+            // error
+            console.log('Error');
+          });
 
-
-          // $cordovaFile.createFile(cordova.file.documentsDirectory, 'TestDir1', false)
-          // //(path, directory)
+          // $cordovaFile.createFile(filePath, "new_file.txt", true)
           // .then(function (success) {
           //   // success
-          //   console.log('TestDir1 Created');
+          //   console.log('created file');
           // }, function (error) {
-          //   console.log('error ' + error.message);
+          //   // error
+          //   console.log('Error creating file');
           // });
+
+          $cordovaFile.writeExistingFile(filePath, "new_file.txt", "add this text")
+          .then(function (success) {
+            // success
+            console.log('text added');
+          }, function (error) {
+            // error
+            console.log('Error creating file');
+          });
+
+          // var $scope.inputs.readFile = [];
+          $cordovaFile.readAsText(filePath, "new_file.txt")
+          .then(function (success) {
+            // success
+            console.log(success);
+
+          }, function (error) {
+            // error
+            console.log('Error reading');
+
+          });
 
 
         }
