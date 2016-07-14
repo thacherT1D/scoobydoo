@@ -6,6 +6,7 @@
     "ngCordova": "^0.1.26-alpha"
   },
   "dependencies": {
-    "ngCordova": "^0.1.26-alpha"
+    "ngCordova": "^0.1.26-alpha",
+    "pouchdb": "^5.4.5"
   }
 }

@@ -5,9 +5,9 @@
   .module('scoobydoo')
   .controller('DataCtrl', DataCtrl)
 
-  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite', '$cordovaFile', '$sqliteToJson']
+  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite', '$cordovaFile']
 
-  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite, $cordovaFile, $sqliteToJson) {
+  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite, $cordovaFile) {
     $ionicPlatform.ready(function() {
       try {
         db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
@@ -31,18 +31,6 @@
         } catch (error) {
           alert(error);
         }
-        // $cordovaEmailComposer.isAvailable().then(function() {
-        //    // is available
-        //    alert("available");
-        //  }, function () {
-        //    // not available
-        //    alert("not available");
-        //  });
-
-
-
-
-
 
         $scope.sendEmail = function(){
           var email = {
@@ -57,75 +45,6 @@
             // user cancelled email
           });
         }
-        $scope.getFreeDiskSpace = function() {
-
-          // $cordovaFile.removeDir(cordova.file.documentsDirectory, 'TestDir1')
-          // //(path, directory)
-          // .then(function (success) {
-          //   // success
-          //   console.log('directory removed');
-          // }, function (error) {
-          //   console.log('error ' + error.message);
-          // });
-
-          // console.log('cordova.file.documentsDirectory: ' + cordova.file.documentsDirectory);
-
-          // $cordovaFile.createDir(cordova.file.documentsDirectory, 'TestDir1', false)
-          // //(path, directory)
-          // .then(function (success) {
-          //   // success
-          //   console.log('TestDir1 Created');
-          // }, function (error) {
-          //   console.log('error ' + error.message);
-          // });
-          var  testdirvar = 'TestDir1'
-          var filePath = cordova.file.documentsDirectory + testdirvar;
-          console.log(filePath);
-
-          $cordovaFile.checkDir(filePath, "")
-          .then(function (success) {
-            // success
-            console.log("Found Dir1");
-          }, function (error) {
-            // error
-            console.log('Error');
-          });
-
-          // $cordovaFile.createFile(filePath, "new_file.txt", true)
-          // .then(function (success) {
-          //   // success
-          //   console.log('created file');
-          // }, function (error) {
-          //   // error
-          //   console.log('Error creating file');
-          // });
-
-          $cordovaFile.writeExistingFile(filePath, "new_file.txt", "add this text")
-          .then(function (success) {
-            // success
-            console.log('text added');
-          }, function (error) {
-            // error
-            console.log('Error creating file');
-          });
-
-          // var $scope.inputs.readFile = [];
-          $cordovaFile.readAsText(filePath, "new_file.txt")
-          .then(function (success) {
-            // success
-            console.log(success);
-
-          }, function (error) {
-            // error
-            console.log('Error reading');
-
-          });
-
-
-        }
       })
-
-
     }
-
   })();
