@@ -3,7 +3,7 @@
   var db;
 
   angular
-  .module('scoobydoo')
+  .module('trackee')
 
   .controller('HomeCtrl', HomeCtrl)
 
@@ -30,7 +30,7 @@
 
     $ionicPlatform.ready(function() {
       try {
-        db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
+        db = $cordovaSQLite.openDB({name:"trackee.db",iosDatabaseLocation: 'Library'});
         $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
         .then(
           //Loads the List of Items when the app first loads

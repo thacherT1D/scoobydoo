@@ -1,4 +1,4 @@
-Trackee v.ScoobyDoo
+Trackee v.trackee
 =====================
 
 <h3>TrackEE. <small>Track Everything Else</small></h3>
