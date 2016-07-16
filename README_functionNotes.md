@@ -20,6 +20,7 @@
   // console.log("SELECTED -> " + res.rows.item(0).item_id + " item Name: " + res.rows.item(0).item_name + " item Desc: " + res.rows.item(0).item_description);
 
   #### Put into home.controller.js in the ```$ionicPlatform.ready(function() {``` section
+
   $cordovaSQLite.execute(db, "SELECT tbl_name FROM sqlite_master WHERE type = 'table'")
     .then(
       function(res) {

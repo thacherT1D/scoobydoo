@@ -94,8 +94,8 @@
 //Seed Event Data for the about Items
     //ITEM 1 - Dexcom
         // $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS ITEM_1 (event_id INTEGER PRIMARY KEY AUTOINCREMENT, item_id INTEGER, event_timeStamp DATETIME)');
-        // $cordovaSQLite.execute(db, "INSERT INTO ITEM_1 (item_id, event_timeStamp) VALUES (1, DateTime('now'))"
-        // $cordovaSQLite.execute(db, "INSERT INTO ITEM_1 (item_id, event_timeStamp) VALUES (1, DateTime('now'))"
+        // $cordovaSQLite.execute(db, "INSERT INTO ITEM_1 (item_id, event_timeStamp) VALUES (1, DateTime('now'))");
+        // $cordovaSQLite.execute(db, "INSERT INTO ITEM_1 (item_id, event_timeStamp) VALUES (1, DateTime('now'))");
 
       });
     }

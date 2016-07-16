@@ -64,9 +64,15 @@ npm install moment --save #momentjs
 + add script to index.html file
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-npm install angular-momentjs --save #angular-moment
+npm install angular-moment moment --save #angular-moment
 + add script to index.html file
 <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
+Add the module angularMoment as a dependency to your app module:
+.module('trackee', ['ionic', 'ngCordova', 'angularMoment'])
+
+<script src="components/moment/moment.js"></script>
+<script src="components/angular-moment/angular-moment.js"></script>
 
 ----
 npm install pouchdb --save
