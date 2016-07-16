@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('scoobydoo')
+    .module('trackee')
     .service('HomeService', HomeService);
 
     // HomeService.$inject = ['$ionicModal', '$cordovaSQLite', '$ionicPlatform'];
@@ -11,7 +11,7 @@
 
     $ionicPlatform.ready(function() {
       try {
-        db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
+        db = $cordovaSQLite.openDB({name:"trackee.db",iosDatabaseLocation: 'Library'});
         $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
         .then(
           function(res) {

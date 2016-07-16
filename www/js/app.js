@@ -3,7 +3,7 @@
   var db;
 
   angular
-    .module('scoobydoo', ['ionic', 'ngCordova', 'angularMoment'])
+    .module('trackee', ['ionic', 'ngCordova', 'angularMoment'])
     .config(routeHandler)
     .run(runBlock);
 
@@ -74,7 +74,7 @@
         }
 
         try {
-          db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
+          db = $cordovaSQLite.openDB({name:"trackee.db",iosDatabaseLocation: 'Library'});
         } catch (error) {
           alert(error);
         }

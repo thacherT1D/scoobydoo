@@ -2,15 +2,15 @@
   'use strict';
   var db;
   angular
-  .module('scoobydoo')
+  .module('trackee')
   .controller('DataCtrl', DataCtrl)
 
-  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite', '$cordovaFile', '$sqliteToJson']
+  DataCtrl.$inject = ['$scope', '$ionicPlatform', '$cordovaEmailComposer', '$cordovaSQLite']
 
-  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite, $cordovaFile, $sqliteToJson) {
+  function DataCtrl($scope, $ionicPlatform, $cordovaEmailComposer, $cordovaSQLite) {
     $ionicPlatform.ready(function() {
       try {
-        db = $cordovaSQLite.openDB({name:"scoobydoo.db",iosDatabaseLocation: 'Library'});
+        db = $cordovaSQLite.openDB({name:"trackee.db",iosDatabaseLocation: 'Library'});
         $cordovaSQLite.execute(db, 'SELECT * FROM Items ORDER BY item_id DESC')
         .then(
           //Loads the List of Items when the app first loads
