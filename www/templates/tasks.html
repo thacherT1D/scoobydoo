@@ -1,0 +1,44 @@
+<ion-view view-title="Tasks">
+  <ion-content class="padding">
+    <div class="card padding" ng-repeat="task in tasks">
+      <h4>{{task.title}}</h4>
+      <div><strong>Last Completed: </strong>
+        <span ng-hide="item.currentEvent.length">
+          --
+        </span>
+
+        <span>
+          <!-- {{item.lastCompletedForDisplay | date }} -->
+          <time am-time-ago="item.lastCompletedForDisplay"></time>
+        </span>
+      </div>
+
+      <div>
+        <strong>Notes: </strong>{{item.item_description}}
+        <span ng-hide="item.item_description.length">
+          --
+        </span>
+      </div>
+      <button class="button button-block button-positive" ng-click="addEvent(item)"> Do it.</button>
+
+      <div class="button-bar button-outline">
+        <a class="button button-outline button-positive"  ng-click="toggleHistory(item)">History</a>
+
+        <a class="button button-outline button-positive" ng-click="deleteItem(item)">Delete</a>
+      </div>
+
+      <div class="padding" ng-show="item.showEventList">
+        <div ng-show="item.currentEvent.length">
+          <strong>History</strong>
+        </div>
+        <div ng-repeat="event in item.currentEvent">
+          <div>{{event.event_timeStamp}}</div>
+        </div>
+        <div ng-hide="item.currentEvent.length">
+          <strong>No Events Yet!</strong>
+        </div>
+      </div>
+    </div>
+
+    </ion-content>
+  </ion-view>

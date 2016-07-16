@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add a Task</h1>
+      <button class="button button-clear button-positive" ng-click="closeAddTask()">Cancel</button>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="addTask(newTask_name,newTask_note)">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Task Name</span>
+          <input type="text" ng-model="newTask_name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Notes</span>
+          <input type="text" ng-model="newTask_note">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Create Task</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

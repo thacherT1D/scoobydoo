@@ -5,7 +5,7 @@
   angular
   .module('trackee')
 
-  .controller('HomeCtrl', HomeCtrl)
+  .controller('TaskCtrl', TaskCtrl)
 
   HomeCtrl.$inject = ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicPlatform'];
 

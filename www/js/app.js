@@ -1,66 +1,52 @@
 (function() {
-  'use strict';
+  'use strict'
   var db;
-
   angular
-    .module('trackee', ['ionic', 'ngCordova', 'angularMoment'])
-    .config(routeHandler)
-    .run(runBlock);
+  .module('trackee', ['ionic', 'ngCordova'])
+  .config(routeHandler)
+  .run(runBlock);
 
-    routeHandler.$inject = ['$stateProvider', '$urlRouterProvider'];
-    runBlock.$inject = ['$ionicPlatform', '$cordovaSQLite'];
+  routeHandler.$inject = ['$stateProvider', '$urlRouterProvider'];
+  runBlock.$inject = ['$ionicPlatform', '$cordovaSQLite'];
 
-    function routeHandler($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/tab/home')
-      $stateProvider
-      // setup an abstract state for the tabs directive
-        .state('tab', {
-        url: '/tab',
-        abstract: true,
-        templateUrl: 'templates/tabs.html'
-      })
-
-      // Each tab has its own nav history stack:
-      .state('tab.home', {
-        url: '/home',
-        views: {
-          'tab-home': {
-            templateUrl: 'templates/tab-home.html',
-            controller: 'HomeCtrl as ctrl'
-          }
+  function routeHandler($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/app/tasks')
+    $stateProvider
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'TaskCtrl'
+    })
+    .state('app.about', {
+      url: '/about',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/about.html',
+          controller: 'TaskCtrl'
         }
-      })
-
-      .state('tab.data', {
-          url: '/data',
-          views: {
-            'tab-data': {
-              templateUrl: 'templates/tab-data.html',
-              controller: 'DataCtrl as ctrl'
-            }
-          }
-        })
-
-      .state('tab.about', {
-        url: '/about',
-        views: {
-          'tab-about': {
-            templateUrl: 'templates/tab-about.html',
-            // controller: 'AboutCtrl as ctrl'
-          }
+      }
+    })
+    .state('app.exportData', {
+      url: '/exportData',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/exportData.html',
+          controller: 'DataCtrl'
         }
-      })
+      }
+    })
+    .state('app.tasks', {
+      url: '/tasks',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/tasks.html',
+          controller: 'TaskCtrl'
 
-      .state('tab.sqliteTest', {
-        url: '/sqliteTest',
-        views: {
-          'tab-sqliteTest': {
-            templateUrl: 'templates/tab-sqliteTest.html',
-            controller: ''
-          }
         }
-      })
-    }
+      }
+    })
+  }
 
     function runBlock($ionicPlatform, $cordovaSQLite) {
       $ionicPlatform.ready(function() {
@@ -69,7 +55,6 @@
           cordova.plugins.Keyboard.disableScroll(true);
         }
         if (window.StatusBar) {
-          // org.apache.cordova.statusbar required
           StatusBar.styleDefault();
         }
 
