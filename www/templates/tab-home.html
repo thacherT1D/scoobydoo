@@ -40,7 +40,7 @@
           <strong>History</strong>
         </div>
         <div ng-repeat="event in item.currentEvent">
-          <div>{{event.event_timeStamp}}</div>
+          <div>{{event.event_timeStamp | date:'medium'}}</div>
         </div>
         <div ng-hide="item.currentEvent.length">
           <strong>No Events Yet!</strong>
@@ -62,13 +62,13 @@
         <!-- Modal content area -->
         <ion-content>
 
-          <form ng-submit="addItem(newitem_name, newitem_description)">
+          <form ng-submit="addItem(newitem.name, newitem.description)">
             <div class="list">
               <label class="item item-input">
-                <input type="text" placeholder="What do you need to do?" ng-model="newitem_name">
+                <input type="text" placeholder="What do you need to do?" ng-model="newitem.name">
               </label>
               <label class="item item-input">
-                <input type="text" placeholder="Optional Description or Notes" ng-model="newitem_description">
+                <input type="text" placeholder="Optional Description or Notes" ng-model="newitem.description">
               </label>
             </div>
             <div class="padding">

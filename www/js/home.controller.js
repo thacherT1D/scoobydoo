@@ -14,6 +14,7 @@
     // $scope.items = [];
     var lastCompletedForDisplay;
 
+    $scope.newitem = {};
 
     // Attempts at Services
     // $scope.printAThing = function() {
@@ -102,6 +103,10 @@
         var newEventTablePerItemQuery = "CREATE TABLE IF NOT EXISTS ITEM_" + item.item_id + "(event_id INTEGER PRIMARY KEY AUTOINCREMENT, item_id INTEGER, event_timeStamp DATETIME)";
         $cordovaSQLite.execute(db, newEventTablePerItemQuery)
 
+
+        // "INSERT INTO ITEMS (id, timestamp) VALUES (?, ?)"
+        // $cordovaSQLite.execute(db, "INSERT INTO ITEMS (id, timestamp) VALUES (?, ?)", [1,2]);
+
         var addNewEventInstanceQuery = ("INSERT INTO ITEM_"
           + item.item_id
           + " (item_id, event_timeStamp) VALUES ("
@@ -125,7 +130,7 @@
                   item.currentEvent.push({
                     event_id: res.rows.item(i).event_id,
                     item_id: res.rows.item(i).item_id,
-                    event_timeStamp: res.rows.item(i).event_timeStamp
+                    event_timeStamp: parseDate(res.rows.item(i).event_timeStamp)
                   })
                 }
               }
@@ -135,10 +140,19 @@
           );
       }
 
+  function parseDate(str) {
+	   var match = str.match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/);
+
+	    return new Date(match[1], match[2]-1, match[3], match[4], match[5], match[6]);
+  }
+
+
       $scope.addItem = function(newitem_name, newitem_description) {
         $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
         .then(function(res) {
           // console.log('saved');
+          $scope.newitem.name = '';
+          $scope.newitem.description = '';
         }, function(error) {
           console.log('error ' + error.message);
         });
