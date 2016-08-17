@@ -117,7 +117,7 @@
         $cordovaSQLite.execute(db, addNewEventInstanceQuery)
 
         item.lastCompletedForDisplay = new Date();
-        // console.log(item.lastCompletedForDisplay);
+        console.log(item.lastCompletedForDisplay);
 
         $cordovaSQLite.execute(db, 'SELECT * FROM ITEM_' + item.item_id)
           .then(
@@ -150,7 +150,7 @@
       $scope.addItem = function(newitem_name, newitem_description) {
         $cordovaSQLite.execute(db, 'INSERT INTO Items (item_name, item_description) VALUES (?,?)', [newitem_name, newitem_description])
         .then(function(res) {
-          // console.log('saved');
+          console.log('saved');
           $scope.newitem.name = '';
           $scope.newitem.description = '';
         }, function(error) {
