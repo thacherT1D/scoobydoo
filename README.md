@@ -14,6 +14,10 @@ Trackee
 
 ----------------------------------
 
+
+
+----------------------------------
+
 <h4>Retrospective and Next Steps</h4>
 This project was built as my capstone project for a six-month full-stack web development program. We had two weeks to design and build a project that demonstrated what we had learned. This app was something that I personally wanted to have to track my own medical devices and felt it would address a need in the patient community.
 
@@ -26,7 +30,7 @@ This project was built as my capstone project for a six-month full-stack web dev
 
 **What I would do differently next time:**
 <ul>
-  <li>Make key decisions earlier - mobile was the right plaform for my project, but we were not taught mobile in this course. I wavered on whether or not to use Ionic or build it as a NEAP app that we were taught. I'm glad I chose Ionic because it better fits the mission of the app, but I could have saved time if I had made that decision sooner</li>
+  <li>Make key decisions earlier - mobile was the right platform for my project, but we were not taught mobile in this course. I wavered on whether or not to use Ionic or build it as a NEAP app that we were taught. I'm glad I chose Ionic because it better fits the mission of the app, but I could have saved time if I had made that decision sooner</li>
   <li>Design for the best structure - I designed my data as I would have for a PostGres database, while very similar to the ngCordova SQLite plugin, it is not exactly the same. Rather than retrofitting PostGres design, next time I would spend more time understanding and designing in SQLite, even if that meant spending more time in the planning phase.</li>
 </ul>
 
@@ -37,6 +41,7 @@ This project was built as my capstone project for a six-month full-stack web dev
   <li>Clean up Controllers, Services, and their relationships to work more efficiently </li>
 </ul>
 
+----------------------------------
 
 **To view this project locally:**
 These steps are approximate -- running ionic locally can be fussy and there may be additional configuration steps for ionic to run on your computer
@@ -55,3 +60,7 @@ Due to the short timeline of this project and the development lag android studio
 
 To run on android, first android studio must be configured and a virtual device added -- with the virtual device open, return to your terminal and enter:
 - `ionic cordova build android` then `ionic cordova emulate android`
+
+
+To open an iOS emulator on an iPhone 8 (and using livereload):
+`ionic cordova emulate ios --target="iPhone-8" --livereload`
