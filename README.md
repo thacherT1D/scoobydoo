@@ -36,3 +36,22 @@ This project was built as my capstone project for a six-month full-stack web dev
   <li>Straighten Up SQLite Tables to be more efficient</li>
   <li>Clean up Controllers, Services, and their relationships to work more efficiently </li>
 </ul>
+
+
+**To view this project locally:**
+These steps are approximate -- running ionic locally can be fussy and there may be additional configuration steps for ionic to run on your computer
+
+`git clone https://github.com/thacherT1D/trackEE.git`
+
+`cd trackEE`
+
+`npm install`
+
+To view the project:
+- Browser: `ionic serve`
+- iOS Simulator: `ionic cordova build ios` then `ionic cordova emulate ios`
+
+Due to the short timeline of this project and the development lag android studio was presenting at the time, testing was only done on iOS.
+
+To run on android, first android studio must be configured and a virtual device added -- with the virtual device open, return to your terminal and enter:
+- `ionic cordova build android` then `ionic cordova emulate android`
