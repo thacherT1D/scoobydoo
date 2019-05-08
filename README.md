@@ -1,7 +1,5 @@
-Trackee
+Track Everything Else
 =====================
-
-<h3>TrackEE. <small>Track Everything Else</small></h3>
 <h3><small>Helping you track more and worry less.</small></h3>
   <p><strong>Built by a patient for other patients and caregivers.</strong></p>
   <p>We all know the feeling -- taking inventory of supplies and you can't quite remember how many of everything you actually have been using... is it time for a reorder? How much do I need to keep on hand for an emergency? To pack for a trip? Trackee was built to answer these questions</p>
